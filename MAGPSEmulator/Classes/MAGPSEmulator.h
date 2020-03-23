@@ -1,5 +1,5 @@
 //
-//  MASCTXGPSEmulator.h
+//  MAGPSEmulator.h
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
