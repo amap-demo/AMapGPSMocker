@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +16,69 @@
                         <viewControllerLayoutGuide type="bottom" id="Mvr-aV-6Um"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3lx-rr-txZ" customClass="MAMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J4V-P2-0IL">
+                                <rect key="frame" x="186.66666666666666" y="590" width="41" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="向上"/>
+                                <connections>
+                                    <action selector="upClicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="yIS-aN-pbq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s4D-lC-Cp3">
+                                <rect key="frame" x="186.66666666666666" y="726" width="41" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="向下"/>
+                                <connections>
+                                    <action selector="downClicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="QlP-3k-GhJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wVf-mv-Smk">
+                                <rect key="frame" x="60" y="666" width="41" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="向左"/>
+                                <connections>
+                                    <action selector="leftClicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="wXK-i0-n6u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJV-NS-fMa">
+                                <rect key="frame" x="313" y="666" width="41" height="36"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="向右"/>
+                                <connections>
+                                    <action selector="rightClicked:" destination="whP-gf-Uak" eventType="touchUpInside" id="HdQ-W3-pET"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="s4D-lC-Cp3" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="87i-VD-XfJ"/>
+                            <constraint firstItem="wVf-mv-Smk" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="60" id="Atm-3Z-gkp"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="cJV-NS-fMa" secondAttribute="bottom" constant="160" id="Aw0-8F-5xD"/>
+                            <constraint firstItem="s4D-lC-Cp3" firstAttribute="top" secondItem="J4V-P2-0IL" secondAttribute="bottom" constant="100" id="D03-xK-AuE"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="wVf-mv-Smk" secondAttribute="bottom" constant="160" id="ITB-Jx-r72"/>
+                            <constraint firstItem="3lx-rr-txZ" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" id="M1L-ta-LDm"/>
+                            <constraint firstAttribute="bottom" secondItem="3lx-rr-txZ" secondAttribute="bottom" id="OK0-6o-Kcd"/>
+                            <constraint firstItem="Mvr-aV-6Um" firstAttribute="top" secondItem="s4D-lC-Cp3" secondAttribute="bottom" constant="100" id="Sjc-vs-Ydx"/>
+                            <constraint firstItem="3lx-rr-txZ" firstAttribute="top" secondItem="TpU-gO-2f1" secondAttribute="top" id="bNx-Ea-2Oa"/>
+                            <constraint firstItem="J4V-P2-0IL" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="u4d-0l-TnA"/>
+                            <constraint firstAttribute="trailing" secondItem="3lx-rr-txZ" secondAttribute="trailing" id="v6H-E6-KpU"/>
+                            <constraint firstAttribute="trailing" secondItem="cJV-NS-fMa" secondAttribute="trailing" constant="60" id="vMV-bn-ssR"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="3lx-rr-txZ" id="4eB-fY-Shj"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="305" y="433"/>
+            <point key="canvasLocation" x="304.34782608695656" y="431.91964285714283"/>
         </scene>
     </scenes>
 </document>

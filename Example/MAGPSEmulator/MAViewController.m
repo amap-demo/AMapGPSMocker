@@ -7,6 +7,7 @@
 //
 
 #import "MAViewController.h"
+#import <MAGPSEmulator/MAGPSEmulator.h>
 
 @interface MAViewController ()
 
@@ -24,6 +25,15 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)upClicked:(id)sender {
+}
+- (IBAction)downClicked:(id)sender {
+}
+- (IBAction)leftClicked:(id)sender {
+}
+- (IBAction)rightClicked:(id)sender {
 }
 
 @end
