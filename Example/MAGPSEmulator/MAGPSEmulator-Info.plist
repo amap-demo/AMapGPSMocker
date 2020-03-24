@@ -45,5 +45,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>权限说明，展示给用户的文案，需要您自行填写相关内容</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>权限说明，展示给用户的文案，需要您自行填写相关内容</string>
 </dict>
 </plist>
