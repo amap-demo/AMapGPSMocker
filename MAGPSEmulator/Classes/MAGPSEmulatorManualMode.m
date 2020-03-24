@@ -8,6 +8,9 @@
 #import "MAGPSEmulatorManualMode.h"
 #import "MAGPSEmulatorUtil.h"
 
+const double kEarthRadius = 6371393.0;
+const double kMinDegree = 0.000001;
+
 @interface MAGPSEmulatorManualMode()
 {
     CLLocationCoordinate2D *_oriCoordinates;
@@ -49,6 +52,7 @@
 
     self.lock = [[NSRecursiveLock alloc] init];
     self.simulateSpeed = 80.0;
+    self.currentPosition = kCLLocationCoordinate2DInvalid;
 }
 
 #pragma mark - Interface
@@ -61,25 +65,6 @@
     self.distancePerStep = self.timeInverval * self.speed;
     [self.lock unlock];
 }
-
-//- (void)setCoordinates:(CLLocationCoordinate2D *)coordinates count:(unsigned long)count {
-//    if (self.isSimulating) {
-//        return;
-//    }
-//
-//    if (coordinates == NULL || count <= 0) {
-//        return;
-//    }
-//
-//    [self deleteCoordinates];
-//
-//    _count = count;
-//    _oriCoordinates = (CLLocationCoordinate2D *)malloc(sizeof(CLLocationCoordinate2D) * _count);
-//    for (int i = 0; i < _count; i++) {
-//        _oriCoordinates[i].latitude = (*(coordinates + i)).latitude;
-//        _oriCoordinates[i].longitude = (*(coordinates + i)).longitude;
-//    }
-//}
 
 - (void)startEmulator {
     if (self.isSimulating) {
@@ -137,12 +122,12 @@
         if ([[NSThread currentThread] isCancelled]) {
             return;
         }
-        CLLocationCoordinate2D resultCoordinate = kCLLocationCoordinate2DInvalid;
-        
-    //生成一个新的点
-        
+        //生成一个新的点
+        CLLocationCoordinate2D resultCoordinate = [self gengerateNextPointWithCurrentPosition:self.currentPosition
+                                                                                     distance:self.distancePerStep andDirection:self.direction];
         if (CLLocationCoordinate2DIsValid(resultCoordinate)) {
             self.generatePointCount ++;
+            self.currentPosition = resultCoordinate;
             [NSThread sleepForTimeInterval:self.timeInverval];
             [self invokeDelegateWithCoordinate:resultCoordinate course:self.direction];
         }
@@ -181,13 +166,43 @@
     direction = normalizeDegree(direction);
     //角度变换成弧度
     double radian = [self radianFromDegress:direction];
+    double moveX = distance * sin(radian);
+    double moveY = distance * cos(radian);
     //直接按照平面坐标计算
-    
-    return kCLLocationCoordinate2DInvalid;
+    //纬度计算
+    double moveYRadian = moveY / kEarthRadius;
+    CLLocationDegrees moveLatitude = [self degressFromRadian:moveYRadian];
+    //经度计算
+    //计算当前纬度所在的圆切面半径
+    double latitudeRadius = kEarthRadius * cos([self radianFromDegress:currentPosition.latitude]);
+    double moveXRadian = moveX / latitudeRadius;
+    CLLocationDegrees moveLontitude = [self degressFromRadian:moveXRadian];
+    //如果变化范围太小，则至少给个最小值
+    if (fabs(moveLatitude) < kMinDegree && fabs(moveLontitude) < kMinDegree) {
+        if (fabs(moveLatitude) > fabs(moveLontitude)) {//修改绝对值较大者
+            if (moveLatitude > 0) {
+                moveLatitude = kMinDegree;
+            } else {
+                moveLatitude = -kMinDegree;
+            }
+        } else {
+            if (moveLontitude > 0) {
+                moveLontitude = kMinDegree;
+            } else {
+                moveLontitude = -kMinDegree;
+            }
+        }
+    }
+    CLLocationCoordinate2D newPoint = CLLocationCoordinate2DMake(currentPosition.latitude + moveLatitude, currentPosition.longitude + moveLontitude);
+    return newPoint;
 }
 
 - (double)radianFromDegress:(double)degree {
-    return degree / 360.f * M_PI;
+    return degree * M_PI / 180 ;
+}
+
+- (double)degressFromRadian:(double)radian {
+    return radian * 180 / M_PI;
 }
 
 - (int)getRandomNumber:(int)from to:(int)to {
