@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-double distanceBetweenCoordinates(CLLocationCoordinate2D pointA, CLLocationCoordinate2D pointB);
-CLLocationCoordinate2D coordinateAtRateOfCoordinates(CLLocationCoordinate2D from, CLLocationCoordinate2D to, double rate);
-double normalizeDegree(double degree);
-double angleBetweenCoordinates(CLLocationCoordinate2D pointA, CLLocationCoordinate2D pointB);
+double emu_distanceBetweenCoordinates(CLLocationCoordinate2D pointA, CLLocationCoordinate2D pointB);
+CLLocationCoordinate2D emu_coordinateAtRateOfCoordinates(CLLocationCoordinate2D from, CLLocationCoordinate2D to, double rate);
+double emu_normalizeDegree(double degree);
+double emu_angleBetweenCoordinates(CLLocationCoordinate2D pointA, CLLocationCoordinate2D pointB);
 
 NS_ASSUME_NONNULL_BEGIN
 

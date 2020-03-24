@@ -121,7 +121,7 @@
 
     CLLocationCoordinate2D firstCoord = *(_oriCoordinates + 0);
     if (CLLocationCoordinate2DIsValid(firstCoord)) {
-        double course = angleBetweenCoordinates(*(_oriCoordinates + 1), firstCoord); //角度
+        double course = emu_angleBetweenCoordinates(*(_oriCoordinates + 1), firstCoord); //角度
         [NSThread sleepForTimeInterval:self.timeInverval];
         [self invokeDelegateWithCoordinate:firstCoord course:course];
     }
@@ -132,7 +132,7 @@
             return;
         }
 
-        double dis = distanceBetweenCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1)); //当前段
+        double dis = emu_distanceBetweenCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1)); //当前段
         if (currentIndex == 0) {
             totalDis = dis; //init
         }
@@ -141,21 +141,21 @@
         double course = 0;
 
         if (totalDis >= stepTotalDistance) {
-            resultCoordinate = coordinateAtRateOfCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1), ((dis - (totalDis - stepTotalDistance)) / dis));
+            resultCoordinate = emu_coordinateAtRateOfCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1), ((dis - (totalDis - stepTotalDistance)) / dis));
 
             stepTotalDistance += self.distancePerStep;
 
         } else {
             currentIndex++;
             if (currentIndex + 1 < _count) {
-                totalDis += distanceBetweenCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1)); //下一段
+                totalDis += emu_distanceBetweenCoordinates(*(_oriCoordinates + currentIndex), *(_oriCoordinates + currentIndex + 1)); //下一段
             } else {
                 resultCoordinate = *(_oriCoordinates + currentIndex); //不够，直接取终点
             }
         }
 
         if (CLLocationCoordinate2DIsValid(resultCoordinate)) {
-            course = angleBetweenCoordinates(*(_oriCoordinates + currentIndex), resultCoordinate); //角度
+            course = emu_angleBetweenCoordinates(*(_oriCoordinates + currentIndex), resultCoordinate); //角度
             [NSThread sleepForTimeInterval:self.timeInverval];
             [self invokeDelegateWithCoordinate:resultCoordinate course:course];
         }
@@ -202,10 +202,10 @@
 
     unsigned long i = realStartIndex;
     for (; i < _count - 1; i++) {
-        double dis = distanceBetweenCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1));
+        double dis = emu_distanceBetweenCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1));
         if (totalDistance <= dis) {
             resultDistance = totalDistance;
-            resultCoordiante = coordinateAtRateOfCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1), (totalDistance / dis));
+            resultCoordiante = emu_coordinateAtRateOfCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1), (totalDistance / dis));
             break;
         } else {
             totalDistance -= dis;

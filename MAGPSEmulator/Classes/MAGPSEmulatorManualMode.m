@@ -163,7 +163,7 @@ const double kMinDegree = 0.000001;
         return kCLLocationCoordinate2DInvalid;
     }
     //角度标准化为0-359.9之间
-    direction = normalizeDegree(direction);
+    direction = emu_normalizeDegree(direction);
     //角度变换成弧度
     double radian = [self radianFromDegress:direction];
     double moveX = distance * sin(radian);
@@ -230,10 +230,10 @@ const double kMinDegree = 0.000001;
 
     unsigned long i = realStartIndex;
     for (; i < _count - 1; i++) {
-        double dis = distanceBetweenCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1));
+        double dis = emu_distanceBetweenCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1));
         if (totalDistance <= dis) {
             resultDistance = totalDistance;
-            resultCoordiante = coordinateAtRateOfCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1), (totalDistance / dis));
+            resultCoordiante = emu_coordinateAtRateOfCoordinates(*(_oriCoordinates + i), *(_oriCoordinates + i + 1), (totalDistance / dis));
             break;
         } else {
             totalDistance -= dis;
