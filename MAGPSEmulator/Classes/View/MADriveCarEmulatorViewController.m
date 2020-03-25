@@ -10,6 +10,11 @@
 
 @interface MADriveCarEmulatorViewController ()
 
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *mileageLable;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *speedLabel;
+@property (unsafe_unretained, nonatomic) IBOutlet UIStepper *speedStepper;
+@property (unsafe_unretained, nonatomic) IBOutlet UIImageView *wheelImageView;
+
 @end
 
 @implementation MADriveCarEmulatorViewController
@@ -17,16 +22,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
+    [self initSpeedStepper];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)initSpeedStepper {
+    self.speedStepper.value = 80;
+    self.speedStepper.minimumValue = 0;
+    self.speedStepper.maximumValue = 200;
+    self.speedStepper.stepValue = 5;
+    [self speedStepperValueChanged:self.speedStepper];
 }
-*/
+
+- (IBAction)speedStepperValueChanged:(id)sender {
+    self.speedLabel.text = [NSString stringWithFormat:@"%.0fkm/h",self.speedStepper.value];
+}
+
+
 
 @end
