@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FB9E74801C95613452AF5FA /* libPods-MAGPSEmulator_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 267D8F1ACEAD103D84A66F95 /* libPods-MAGPSEmulator_Tests.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,10 +21,9 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		707F59D306E5F36F9A66D4FB /* libPods-MAGPSEmulator_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93B3F408F291D0DFFD7AEB03 /* libPods-MAGPSEmulator_Example.a */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		A866942BBEC9BB004076988E /* Pods_MAGPSEmulator_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5073A4D0BC74C195A2CC5011 /* Pods_MAGPSEmulator_Tests.framework */; };
-		D02DECBABFEF3C75674FFCCE /* Pods_MAGPSEmulator_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DED61AE16680B995737A1AB /* Pods_MAGPSEmulator_Example.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,8 +39,8 @@
 /* Begin PBXFileReference section */
 		18A3822DCA01263C974436A7 /* Pods-MAGPSEmulator_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGPSEmulator_Tests.release.xcconfig"; path = "Target Support Files/Pods-MAGPSEmulator_Tests/Pods-MAGPSEmulator_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		18B19421F7254C1C1051B269 /* MAGPSEmulator.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = MAGPSEmulator.podspec; path = ../MAGPSEmulator.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		267D8F1ACEAD103D84A66F95 /* libPods-MAGPSEmulator_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MAGPSEmulator_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A92C54E011A0673AACC6046 /* Pods-MAGPSEmulator_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGPSEmulator_Tests.debug.xcconfig"; path = "Target Support Files/Pods-MAGPSEmulator_Tests/Pods-MAGPSEmulator_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5073A4D0BC74C195A2CC5011 /* Pods_MAGPSEmulator_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAGPSEmulator_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* MAGPSEmulator_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAGPSEmulator_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -61,10 +61,10 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		7DED61AE16680B995737A1AB /* Pods_MAGPSEmulator_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MAGPSEmulator_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		87D4CE68C7CBF794A51D4B9C /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		8C828872254334085A2AD1A3 /* Pods-MAGPSEmulator_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGPSEmulator_Example.release.xcconfig"; path = "Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example.release.xcconfig"; sourceTree = "<group>"; };
+		93B3F408F291D0DFFD7AEB03 /* libPods-MAGPSEmulator_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MAGPSEmulator_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5D4EC2FB97095D37DF962A4 /* Pods-MAGPSEmulator_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MAGPSEmulator_Example.debug.xcconfig"; path = "Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		D56B05AADD6A47C7B41C8A3B /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -77,7 +77,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				D02DECBABFEF3C75674FFCCE /* Pods_MAGPSEmulator_Example.framework in Frameworks */,
+				707F59D306E5F36F9A66D4FB /* libPods-MAGPSEmulator_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				A866942BBEC9BB004076988E /* Pods_MAGPSEmulator_Tests.framework in Frameworks */,
+				4FB9E74801C95613452AF5FA /* libPods-MAGPSEmulator_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,8 +123,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				7DED61AE16680B995737A1AB /* Pods_MAGPSEmulator_Example.framework */,
-				5073A4D0BC74C195A2CC5011 /* Pods_MAGPSEmulator_Tests.framework */,
+				93B3F408F291D0DFFD7AEB03 /* libPods-MAGPSEmulator_Example.a */,
+				267D8F1ACEAD103D84A66F95 /* libPods-MAGPSEmulator_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -207,7 +207,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				E2B32CCB7035FBEF7C3E6D7B /* [CP] Embed Pods Frameworks */,
 				CDC4A46B83B347357F234225 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -352,32 +351,16 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-resources.sh",
 				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/MAGPSEmulator/MAGPSBundle.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MAGPSBundle.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E2B32CCB7035FBEF7C3E6D7B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MAGPSEmulator/MAGPSEmulator.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MAGPSEmulator.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

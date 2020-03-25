@@ -1,4 +1,4 @@
-use_frameworks!
+#use_frameworks!//不使用动态库
 
 platform :ios, '8.0'
 
