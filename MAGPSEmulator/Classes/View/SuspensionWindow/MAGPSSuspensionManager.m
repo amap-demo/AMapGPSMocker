@@ -100,8 +100,8 @@
 
 #pragma mark - MAGPSSuspensionVCDelegate
 
-//浮窗点击事件处理
-- (void)dragableViewDidClicked:(MAGPSSuspensionVC *)suspensionVC
+//浮窗长按事件处理
+- (void)dragableViewLongPressed:(MAGPSSuspensionVC *)suspensionVC
 {
     dispatch_async(dispatch_get_main_queue(), ^{
         [self hideAndDestroy];

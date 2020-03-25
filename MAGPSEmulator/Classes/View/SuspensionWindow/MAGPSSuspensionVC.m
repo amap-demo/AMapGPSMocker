@@ -52,16 +52,14 @@
 
 #pragma mark - Handle Event
 
-- (void)_handleTap:(UITapGestureRecognizer *)tapGesture
-{
-    if ([self.delegate respondsToSelector:@selector(dragableViewDidClicked:)]) {
-        [self.delegate dragableViewDidClicked:self];
-    }
+- (void)_handleTap:(UITapGestureRecognizer *)tapGesture{
+//    NSLog(@"点击收拾暂不处理");
 }
 
-- (void)_handleLongPress:(UILongPressGestureRecognizer *)longPressGesture
-{
-//    NSLog(@"长按不跳转");
+- (void)_handleLongPress:(UILongPressGestureRecognizer *)longPressGesture {
+    if ([self.delegate respondsToSelector:@selector(dragableViewLongPressed:)]) {
+        [self.delegate dragableViewLongPressed:self];
+    }
 }
 
 #pragma mark - Touch Handling

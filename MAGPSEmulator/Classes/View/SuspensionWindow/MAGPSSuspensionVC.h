@@ -25,7 +25,7 @@
 
 @protocol MAGPSSuspensionVCDelegate <NSObject>
 
-- (void)dragableViewDidClicked:(MAGPSSuspensionVC *)floatingViewController;
+- (void)dragableViewLongPressed:(MAGPSSuspensionVC *)floatingViewController;
 
 @end
 
