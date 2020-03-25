@@ -9,10 +9,13 @@
 #import "MAViewController.h"
 #import <MAGPSEmulator/MAGPSEmulator.h>
 #import <MAGPSEmulator/MAGPSEmulatorManualMode.h>
+#import "MAGPSSuspensionManager.h"
+#import "MADriveCarEmulatorViewController.h"
 
 @interface MAViewController ()<MAMapViewDelegate,MAGPSEmulatorDelegate>
 
 @property (nonatomic,strong) MAGPSEmulatorManualMode *emulator;
+@property (nonatomic,strong) MADriveCarEmulatorViewController *driverCarVC;
 
 @end
 
@@ -32,6 +35,13 @@
 - (void)initMapView {
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+}
+
+- (void)showFloatingWindow {
+    self.driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
+                                                                         bundle:nil];
+    MAGPSSuspensionManager *floatingWindowManager = [MAGPSSuspensionManager sharedManager];
+    [floatingWindowManager showWithContent:self.driverCarVC];
 }
 
 
@@ -72,7 +82,8 @@
 //MARK: btnAction
 
 - (IBAction)upClicked:(id)sender {
-    self.emulator.direction = 0;
+//    self.emulator.direction = 0;
+    [self showFloatingWindow];
 }
 - (IBAction)downClicked:(id)sender {
     self.emulator.direction = 180;
