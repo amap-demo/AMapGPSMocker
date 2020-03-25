@@ -28,20 +28,17 @@
 {
     [self.view addSubview:self.dragableView];
     
-    
-    //设置默认位置
-    [self.view addSubview:self.dragableView];
-
+    //设置默认位置,这里实际可以不添加任何约束，dragableView和其subView，即contentVC的View建立约束关系，其大小由其subView的约束间接控制
 //    CGFloat heightOfScreen = [UIScreen mainScreen].bounds.size.height;
 //    CGFloat widthOfScreen = [UIScreen mainScreen].bounds.size.width;
-//    CGFloat widthOfVideo = MIN(heightOfScreen, widthOfScreen) * 0.4;
-//    self.dragableView.frame = CGRectMake(widthOfScreen - (widthOfVideo + 10), 150.0f, widthOfVideo, widthOfVideo*9/16);
-    
-//    [self.dragableView autoPinEdgeToSuperviewEdge:ALEdgeRight withInset:10.0f];
-//    [self.dragableView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:150.0f];
-//    [self.dragableView autoSetDimension:ALDimensionWidth toSize:widthOfVideo];
-//    [self.dragableView autoSetDimension:ALDimensionHeight toSize:widthOfVideo * 9 / 16];
-    
+//    CGFloat widthOfView = MIN(heightOfScreen, widthOfScreen) * 0.3;
+//    NSArray<NSLayoutConstraint *> *constraints = @[[self.dragableView.widthAnchor constraintEqualToConstant:widthOfView],
+//                                                   [self.dragableView.heightAnchor constraintEqualToConstant:widthOfView * 9/ 16]];
+//    
+//    for (NSLayoutConstraint *constraint in constraints) {
+//        constraint.priority = UILayoutPriorityDefaultHigh;
+//    }
+//    [self.view addConstraints:constraints];
     //点击事件和手势
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTap:)];
     tapGesture.numberOfTapsRequired = 1;
@@ -94,6 +91,7 @@
         _dragableView = [[MAGPSSuspensionView alloc] init];
         _dragableView.backgroundColor = [UIColor clearColor];
         _dragableView.userInteractionEnabled = YES;
+        _dragableView.translatesAutoresizingMaskIntoConstraints = NO;
         [_dragableView setDragEnable:YES];
         [_dragableView setAdsorbEnable:YES];
     }
