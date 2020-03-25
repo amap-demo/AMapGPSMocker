@@ -32,9 +32,11 @@ TODO: Add long description of the pod here.
 
   s.source_files = 'MAGPSEmulator/Classes/**/*.{h,m}'
   
-  s.resource_bundles = {
-      'MAGPSBundle' => ['MAGPSEmulator/Classes/**/*.{xib,storyboard}','MAGPSEmulator/Assets/**/*.{xib,storyboard,xcassets}']
-  }
+  s.resources = ['MAGPSEmulator/Classes/**/*.{xib,storyboard,xcassets}','MAGPSEmulator/Assets/**/*.{xib,storyboard,xcassets,png}']
+
+#  s.resource_bundles = {
+#      'MAGPSBundle' => ['MAGPSEmulator/Classes/**/*.{xib,storyboard}','MAGPSEmulator/Assets/**/*.{xib,storyboard,xcassets}']
+#  }
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
