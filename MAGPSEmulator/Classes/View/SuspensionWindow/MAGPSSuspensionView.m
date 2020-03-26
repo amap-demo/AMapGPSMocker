@@ -22,6 +22,8 @@ static CGFloat const kDefaultPadding = 5.0f;
 - (instancetype)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
+        self.dragEnable = NO;
+        self.adsorbEnable = NO;
     }
     
     return self;
@@ -58,11 +60,17 @@ static CGFloat const kDefaultPadding = 5.0f;
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    if (!self.isDragEnable) {
+        return;
+    }
     [self _adjustDragableViewPosition];
 }
 
 - (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
+    if (!self.isDragEnable) {
+        return;
+    }
     [self _adjustDragableViewPosition];
 }
 
