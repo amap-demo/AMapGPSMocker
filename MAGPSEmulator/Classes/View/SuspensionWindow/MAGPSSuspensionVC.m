@@ -40,27 +40,27 @@
 //    }
 //    [self.view addConstraints:constraints];
     //点击事件和手势
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTap:)];
-    tapGesture.numberOfTapsRequired = 1;
-    [self.dragableView addGestureRecognizer:tapGesture];
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTap:)];
+//    tapGesture.numberOfTapsRequired = 1;
+//    [self.dragableView addGestureRecognizer:tapGesture];
     
     //长按不做处理
-    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
-    longPressGesture.minimumPressDuration = 0.5;
-    [self.dragableView addGestureRecognizer:longPressGesture];
+//    UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
+//    longPressGesture.minimumPressDuration = 0.5;
+//    [self.dragableView addGestureRecognizer:longPressGesture];
 }
 
 #pragma mark - Handle Event
 
-- (void)_handleTap:(UITapGestureRecognizer *)tapGesture{
-//    NSLog(@"点击收拾暂不处理");
-}
+//- (void)_handleTap:(UITapGestureRecognizer *)tapGesture{
+////    NSLog(@"点击收拾暂不处理");
+//}
 
-- (void)_handleLongPress:(UILongPressGestureRecognizer *)longPressGesture {
-    if ([self.delegate respondsToSelector:@selector(dragableViewLongPressed:)]) {
-        [self.delegate dragableViewLongPressed:self];
-    }
-}
+//- (void)_handleLongPress:(UILongPressGestureRecognizer *)longPressGesture {
+//    if ([self.delegate respondsToSelector:@selector(dragableViewLongPressed:)]) {
+//        [self.delegate dragableViewLongPressed:self];
+//    }
+//}
 
 #pragma mark - Touch Handling
 
