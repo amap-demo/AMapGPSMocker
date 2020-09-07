@@ -40,4 +40,13 @@
     self.speedLabel.text = [NSString stringWithFormat:@"%.0fkm/h",self.speedStepper.value];
 }
 
+- (void)wheelDidChangeValue:(CGFloat)currentValue {
+    if (currentValue < 0) {
+        currentValue = 2 * M_PI + currentValue;
+    }
+    CGFloat degree = currentValue * 180 / M_PI;
+    NSLog(@"current Degree:%f",degree);
+}
+
+
 @end
