@@ -10,8 +10,12 @@
 @interface MARotaryWheel ()
 
 @property (nonatomic,assign,readwrite) CGFloat currentValue;
-@property (nonatomic, strong) UIView *container;
+@property (nonatomic,strong) UIView *container;
 @property (nonatomic,assign) CGAffineTransform startTransform;
+
+@property (nonatomic,assign) CGFloat centerImageWidth;
+@property (nonatomic,assign) CGFloat minTouchDistance;
+@property (nonatomic,assign) CGFloat maxTouchDistance;
 
 @end
 
@@ -25,6 +29,9 @@ static float deltaAngle;
     if (self) {
         self.currentValue = 0;
         self.delegate = delegate;
+        self.centerImageWidth = frame.size.width * 0.30;//总宽度的30%
+        self.minTouchDistance = self.centerImageWidth / sqrt(2);
+        self.maxTouchDistance = frame.size.width / 2.0;
         [self drawWheel];
     }
     return self;
@@ -39,11 +46,10 @@ static float deltaAngle;
     bg.image = [UIImage imageNamed:@"wheel.png"];
     [self.container addSubview:bg];
     
-    UIImageView *mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 58, 58)];
-    mask.image =[UIImage imageNamed:@"center_btn.png"] ;
-    mask.center = self.center;
-    mask.center = CGPointMake(mask.center.x, mask.center.y+3);
-    [self addSubview:mask];
+    UIImageView *centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.centerImageWidth, self.centerImageWidth)];
+    centerImageView.image =[UIImage imageNamed:@"center_btn.png"] ;
+    centerImageView.center = self.center;
+    [self addSubview:centerImageView];
     
     [self.delegate wheelDidChangeValue:self.currentValue];
 }
@@ -58,7 +64,7 @@ static float deltaAngle;
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event {
     CGPoint touchPoint = [touch locationInView:self];
     float dist = [self calculateDistanceFromCenter:touchPoint];
-    if (dist < 40 || dist > 100) {//圆盘的中心和外边沿界限
+    if (dist < self.minTouchDistance || dist > self.maxTouchDistance) {//圆盘的中心和外边沿界限
         // forcing a tap to be on the ferrule
         NSLog(@"ignoring tap (%f,%f)", touchPoint.x, touchPoint.y);
         return NO;
@@ -78,10 +84,9 @@ static float deltaAngle;
         
     CGPoint pt = [touch locationInView:self];
     float dist = [self calculateDistanceFromCenter:pt];
-    if (dist < 40 || dist > 100) {//圆盘的中心和外边沿界限
+    if (dist < self.minTouchDistance || dist > self.maxTouchDistance) {//圆盘的中心和外边沿界限
         // a drag path too close to the center
         NSLog(@"drag path too close to the center (%f,%f)", pt.x, pt.y);
-        
         // here you might want to implement your solution when the drag
         // is too close to the center
         // You might go back to the clove previously selected
