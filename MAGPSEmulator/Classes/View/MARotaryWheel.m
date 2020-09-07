@@ -43,7 +43,7 @@ static float deltaAngle;
     [self.container addSubview:bg];
     
     UIImageView *mask = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 58, 58)];
-    mask.image =[UIImage imageNamed:@"centerButton.png"] ;
+    mask.image =[UIImage imageNamed:@"center_btn.png"] ;
     mask.center = self.center;
     mask.center = CGPointMake(mask.center.x, mask.center.y+3);
     [self addSubview:mask];
