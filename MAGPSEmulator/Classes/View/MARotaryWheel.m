@@ -9,7 +9,6 @@
 
 @interface MARotaryWheel ()
 
-@property (nonatomic,assign,readwrite) NSInteger numberOfSections;
 @property (nonatomic,assign,readwrite) CGFloat currentValue;
 @property (nonatomic, strong) UIView *container;
 @property (nonatomic,assign) CGAffineTransform startTransform;
@@ -21,12 +20,10 @@ static float deltaAngle;
 @implementation MARotaryWheel
 
 - (instancetype)initWithFrame:(CGRect)frame
-                     sections:(NSInteger)sections
                   AndDelegate:(id<MARotaryWheelDelegate>)delegate {
     self = [super initWithFrame:frame];
     if (self) {
         self.currentValue = 0;
-        self.numberOfSections = sections;
         self.delegate = delegate;
         [self drawWheel];
     }

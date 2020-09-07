@@ -19,13 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MARotaryWheel : UIControl
 
 @property (nonatomic,weak) id<MARotaryWheelDelegate> delegate;
-//圆盘的分区数量
-@property (nonatomic,assign,readonly) NSInteger numberOfSections;
 //当前的圆盘角度
 @property (nonatomic,assign,readonly) CGFloat currentValue;
 
 - (instancetype)initWithFrame:(CGRect)frame
-                     sections:(NSInteger)sections
                   AndDelegate:(id<MARotaryWheelDelegate>)delegate;
 
 @end
