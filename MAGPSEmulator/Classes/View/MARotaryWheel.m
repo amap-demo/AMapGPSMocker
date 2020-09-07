@@ -51,7 +51,9 @@ static float deltaAngle;
     centerImageView.center = self.center;
     [self addSubview:centerImageView];
     
-    [self.delegate wheelDidChangeValue:self.currentValue];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(wheelDidChangeValue:)]) {
+        [self.delegate wheelDidChangeValue:self.currentValue];
+    }
 }
 
 - (float)calculateDistanceFromCenter:(CGPoint)point {
@@ -104,11 +106,10 @@ static float deltaAngle;
 }
 
 - (void)endTrackingWithTouch:(UITouch*)touch withEvent:(UIEvent*)event {
-    CGFloat radians = atan2f(self.container.transform.b, self.container.transform.a);
-    [self.delegate wheelDidChangeValue:radians];
+    self.currentValue = atan2f(self.container.transform.b, self.container.transform.a);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(wheelDidChangeValue:)]) {
+        [self.delegate wheelDidChangeValue:self.currentValue];
+    }
 }
-
-
-
 
 @end
