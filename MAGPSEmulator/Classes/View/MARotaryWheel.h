@@ -11,7 +11,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol MARotaryWheelDelegate <NSObject>
 
-- (void)wheelDidChangeValue:(CGFloat)value;
+
+/// 选择的角度更新
+/// @param currentValue 当前的角度值（单位：弧度）
+- (void)wheelDidChangeValue:(CGFloat)currentValue;
 
 @end
 
@@ -19,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface MARotaryWheel : UIControl
 
 @property (nonatomic,weak) id<MARotaryWheelDelegate> delegate;
-//当前的圆盘角度
+//当前的圆盘角度,从(-M_PI,M_PI]之间，向右顺时针为正角度，向左逆时针为负角度
 @property (nonatomic,assign,readonly) CGFloat currentValue;
 
 - (instancetype)initWithFrame:(CGRect)frame

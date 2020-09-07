@@ -23,32 +23,42 @@ static float deltaAngle;
 
 @implementation MARotaryWheel
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [self commonInitWithFrame:self.frame];
+}
+
 - (instancetype)initWithFrame:(CGRect)frame
                   AndDelegate:(id<MARotaryWheelDelegate>)delegate {
     self = [super initWithFrame:frame];
     if (self) {
-        self.currentValue = 0;
         self.delegate = delegate;
-        self.centerImageWidth = frame.size.width * 0.30;//总宽度的30%
-        self.minTouchDistance = self.centerImageWidth / sqrt(2);
-        self.maxTouchDistance = frame.size.width / 2.0;
-        [self drawWheel];
+        [self commonInitWithFrame:frame];
     }
     return self;
 }
 
+- (void)commonInitWithFrame:(CGRect)frame {
+    self.currentValue = 0;
+    self.centerImageWidth = frame.size.width * 0.30;//总宽度的30%
+    self.minTouchDistance = self.centerImageWidth / sqrt(2);
+    self.maxTouchDistance = frame.size.width / 2.0;
+    [self drawWheel];
+}
+
 - (void)drawWheel {
-    self.container = [[UIView alloc] initWithFrame:self.frame];
+    self.container = [[UIView alloc] initWithFrame:self.bounds];
     self.container.userInteractionEnabled = NO;
     [self addSubview:self.container];
     
-    UIImageView *bg = [[UIImageView alloc] initWithFrame:self.container.frame];
+    UIImageView *bg = [[UIImageView alloc] initWithFrame:self.container.bounds];
     bg.image = [UIImage imageNamed:@"wheel.png"];
     [self.container addSubview:bg];
     
     UIImageView *centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.centerImageWidth, self.centerImageWidth)];
     centerImageView.image =[UIImage imageNamed:@"center_btn.png"] ;
     centerImageView.center = self.center;
+    centerImageView.center = CGPointMake(self.center.x - self.frame.origin.x, self.center.y - self.frame.origin.y);
     [self addSubview:centerImageView];
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(wheelDidChangeValue:)]) {

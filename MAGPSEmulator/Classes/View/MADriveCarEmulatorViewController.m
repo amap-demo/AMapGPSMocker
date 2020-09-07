@@ -7,12 +7,14 @@
 //
 
 #import "MADriveCarEmulatorViewController.h"
+#import "MARotaryWheel.h"
 
-@interface MADriveCarEmulatorViewController ()
+@interface MADriveCarEmulatorViewController ()<MARotaryWheelDelegate>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *mileageLable;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *speedLabel;
 @property (unsafe_unretained, nonatomic) IBOutlet UIStepper *speedStepper;
+@property (unsafe_unretained, nonatomic) IBOutlet MARotaryWheel *wheel;
 
 @end
 
@@ -22,6 +24,8 @@
     [super viewDidLoad];
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     [self initSpeedStepper];
+    
+    self.wheel.delegate = self;
 }
 
 - (void)initSpeedStepper {
