@@ -61,9 +61,9 @@
     _rootVC = [[AMGPSFloatWindowRootVC alloc] init];
     _rootVC.delegate = self;
     
-    CGRect frame = [UIScreen mainScreen].bounds;
-    frame.size.height -= 1;
-    _floatWindow = [[AMGPSFloatWindow alloc] initWithFrame:frame];
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    screenBounds.size.height -= 1;
+    _floatWindow = [[AMGPSFloatWindow alloc] initWithFrame:screenBounds];
     _floatWindow.eventDelegate = self;
     _floatWindow.rootViewController = _rootVC;
     
@@ -74,14 +74,27 @@
     
     [floatingVC addChildViewController:contentVC];
     [dragableView addSubview:contentVC.view];
-    contentVC.view.frame = dragableView.bounds;
     [contentVC didMoveToParentViewController:floatingVC];
     [dragableView addConstraints:@[[contentVC.view.leadingAnchor constraintEqualToAnchor:dragableView.leadingAnchor],
                                     [contentVC.view.trailingAnchor constraintEqualToAnchor:dragableView.trailingAnchor],
                                     [contentVC.view.topAnchor constraintEqualToAnchor:dragableView.topAnchor],
                                     [contentVC.view.bottomAnchor constraintEqualToAnchor:dragableView.bottomAnchor]]];
-    
     self.floatWindow.hidden = NO;
+    [self.floatWindow layoutIfNeeded];
+    [self setDragableViewDefaultPostion];
+}
+
+
+/// 设置可拖拽视图的默认位置(屏幕右侧，中间位置)
+- (void)setDragableViewDefaultPostion {
+    UIView *dragableView = (UIView *)self.rootVC.dragableView;
+    CGRect curFrame = dragableView.frame;
+    CGPoint curRightCenterPoint = CGPointMake(curFrame.origin.x + curFrame.size.width, curFrame.origin.y + curFrame.size.height/2.0);
+    CGRect screenBounds = [UIScreen mainScreen].bounds;
+    CGPoint screenRightCenterPoint = CGPointMake(screenBounds.size.width, screenBounds.size.height/2.0);
+    CGPoint diffPoint = CGPointMake(screenRightCenterPoint.x - curRightCenterPoint.x, screenRightCenterPoint.y - curRightCenterPoint.y);
+    CGRect updateFrame = CGRectMake(curFrame.origin.x + diffPoint.x, curFrame.origin.y + diffPoint.y, curFrame.size.width, curFrame.size.height);
+    dragableView.frame = updateFrame;
 }
 
 - (void)hideAndDestroy {
