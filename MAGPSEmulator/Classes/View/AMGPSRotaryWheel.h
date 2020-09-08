@@ -1,6 +1,6 @@
 //
-//  MARotaryWheel.h
-//  MAGPSEmulator
+//  AMGPSRotaryWheel.h
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/9/7.
 //
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 //旋转方向盘的视图类
-@interface MARotaryWheel : UIControl
+@interface AMGPSRotaryWheel : UIControl
 
 @property (nonatomic,weak) id<MARotaryWheelDelegate> delegate;
 //当前的圆盘角度,从(-M_PI,M_PI]之间，向右顺时针为正角度，向左逆时针为负角度

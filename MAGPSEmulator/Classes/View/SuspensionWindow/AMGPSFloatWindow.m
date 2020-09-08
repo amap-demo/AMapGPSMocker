@@ -1,13 +1,13 @@
 //
-//  MAGPSSuspensionWindow.m
-//  MAGPSEmulator
+//  AMGPSFloatWindow.m
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
 
-#import "MAGPSSuspensionWindow.h"
+#import "AMGPSFloatWindow.h"
 
-@implementation MAGPSSuspensionWindow
+@implementation AMGPSFloatWindow
 
 - (id)initWithFrame:(CGRect)frame
 {

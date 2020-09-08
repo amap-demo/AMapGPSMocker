@@ -60,7 +60,7 @@
                         <action selector="speedStepperValueChanged:" destination="-1" eventType="valueChanged" id="l2a-FH-9z6"/>
                     </connections>
                 </stepper>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1g-mE-J38" customClass="MARotaryWheel">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S1g-mE-J38" customClass="AMGPSRotaryWheel">
                     <rect key="frame" x="138" y="12.5" width="100" height="100"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>

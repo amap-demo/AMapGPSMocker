@@ -1,18 +1,18 @@
 //
-//  MAGPSSuspensionVC.m
-//  MAGPSEmulator
+//  AMGPSFloatWindowRootVC.m
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
 
-#import "MAGPSSuspensionVC.h"
-#import "MAGPSSuspensionView.h"
+#import "AMGPSFloatWindowRootVC.h"
+#import "AMGPSDragableView.h"
 
-@interface MAGPSSuspensionVC ()
+@interface AMGPSFloatWindowRootVC ()
 
 @end
 
-@implementation MAGPSSuspensionVC
+@implementation AMGPSFloatWindowRootVC
 
 
 - (void)viewDidLoad
@@ -83,10 +83,10 @@
 
 #pragma mark - Setter & Getter
 
-- (MAGPSSuspensionView *)dragableView
+- (AMGPSDragableView *)dragableView
 {
     if (!_dragableView) {
-        _dragableView = [[MAGPSSuspensionView alloc] init];
+        _dragableView = [[AMGPSDragableView alloc] init];
         _dragableView.backgroundColor = [UIColor clearColor];
         _dragableView.userInteractionEnabled = YES;
         _dragableView.translatesAutoresizingMaskIntoConstraints = NO;

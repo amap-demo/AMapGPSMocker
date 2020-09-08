@@ -1,6 +1,6 @@
 //
 //  MAGPSEmulatorUtil.m
-//  MAGPSEmulator
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/23.
 //

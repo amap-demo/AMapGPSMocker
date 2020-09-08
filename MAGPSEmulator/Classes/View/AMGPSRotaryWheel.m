@@ -1,13 +1,13 @@
 //
-//  MARotaryWheel.m
-//  MAGPSEmulator
+//  AMGPSRotaryWheel.m
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/9/7.
 //
 
-#import "MARotaryWheel.h"
+#import "AMGPSRotaryWheel.h"
 
-@interface MARotaryWheel ()
+@interface AMGPSRotaryWheel ()
 
 @property (nonatomic,assign,readwrite) CGFloat currentValue;
 @property (nonatomic,strong) UIView *container;
@@ -21,7 +21,7 @@
 
 static float deltaAngle;
 
-@implementation MARotaryWheel
+@implementation AMGPSRotaryWheel
 
 - (void)awakeFromNib {
     [super awakeFromNib];

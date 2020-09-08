@@ -1,10 +1,10 @@
 //
 //  MASGPSEmulator.m
 
-#import "MAGPSEmulator.h"
+#import "AMGPSEmulator.h"
 #import "MAGPSEmulatorUtil.h"
 
-@interface MAGPSEmulator ()
+@interface AMGPSEmulator ()
 {
     CLLocationCoordinate2D *_oriCoordinates;
     unsigned long _count;
@@ -21,7 +21,7 @@
 @end
 
 
-@implementation MAGPSEmulator
+@implementation AMGPSEmulator
 
 #pragma mark - Life Cycle
 

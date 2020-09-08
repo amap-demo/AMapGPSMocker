@@ -1,6 +1,6 @@
 //
-//  MAGPSSuspensionManager.h
-//  MAGPSEmulator
+//  AMGPSFloatWindowManager.h
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
@@ -9,8 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface MAGPSSuspensionManager : NSObject
-
+@interface AMGPSFloatWindowManager : NSObject
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
@@ -18,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)sharedManager;
 
 //显示浮窗
-- (void)showWithContent:(UIViewController *)subVC;
+- (void)showWithContent:(UIViewController *)contentVC;
 
 //隐藏并销毁
 - (void)hideAndDestroy;

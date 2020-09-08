@@ -1,5 +1,5 @@
 //
-//  MAGPSEmulator.h
+//  AMGPSEmulator.h
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
@@ -17,7 +17,7 @@
 @end
 
 
-@interface MAGPSEmulator : NSObject
+@interface AMGPSEmulator : NSObject
 
 /**
  *  A object adopt the ATGPSEmulatorDelegate protocol

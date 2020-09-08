@@ -7,14 +7,14 @@
 //
 
 #import "MADriveCarEmulatorViewController.h"
-#import "MARotaryWheel.h"
+#import "AMGPSRotaryWheel.h"
 
 @interface MADriveCarEmulatorViewController ()<MARotaryWheelDelegate>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *mileageLable;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *speedLabel;
 @property (unsafe_unretained, nonatomic) IBOutlet UIStepper *speedStepper;
-@property (unsafe_unretained, nonatomic) IBOutlet MARotaryWheel *wheel;
+@property (unsafe_unretained, nonatomic) IBOutlet AMGPSRotaryWheel *wheel;
 
 @end
 

@@ -1,6 +1,6 @@
 //
-//  MAGPSSuspensionWindow.h
-//  MAGPSEmulator
+//  AMGPSFloatWindow.h
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
@@ -9,7 +9,7 @@
 
 @protocol MAGPSSuspensionWindowDelegate;
 
-@interface MAGPSSuspensionWindow : UIWindow
+@interface AMGPSFloatWindow : UIWindow
 
 @property (weak, nonatomic) id<MAGPSSuspensionWindowDelegate> eventDelegate;
 

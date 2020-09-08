@@ -1,15 +1,15 @@
 //
 //  MAViewController.m
-//  MAGPSEmulator
+//  AMGPSEmulator
 //
 //  Created by xuefeng.lly on 03/23/2020.
 //  Copyright (c) 2020 xuefeng.lly. All rights reserved.
 //
 
 #import "MAViewController.h"
-#import <MAGPSEmulator/MAGPSEmulator.h>
+#import <MAGPSEmulator/AMGPSEmulator.h>
 #import <MAGPSEmulator/MAGPSEmulatorManualMode.h>
-#import "MAGPSSuspensionManager.h"
+#import "AMGPSFloatWindowManager.h"
 #import "MADriveCarEmulatorViewController.h"
 
 @interface MAViewController ()<MAMapViewDelegate,MAGPSEmulatorDelegate>
@@ -40,7 +40,7 @@
 - (void)showFloatingWindow {
     self.driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
                                                                          bundle:nil];
-    MAGPSSuspensionManager *floatingWindowManager = [MAGPSSuspensionManager sharedManager];
+    AMGPSFloatWindowManager *floatingWindowManager = [AMGPSFloatWindowManager sharedManager];
     [floatingWindowManager showWithContent:self.driverCarVC];
 }
 

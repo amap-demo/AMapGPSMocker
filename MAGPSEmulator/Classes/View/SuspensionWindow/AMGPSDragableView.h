@@ -1,6 +1,6 @@
 //
-//  MAGPSSuspensionView.h
-//  MAGPSEmulator
+//  AMGPSDragableView.h
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
@@ -9,7 +9,7 @@
 
 extern CGFloat const kDefaultWidth;
 
-@interface MAGPSSuspensionView : UIView
+@interface AMGPSDragableView : UIView
 
 //是否可以拖动
 @property (nonatomic, assign, getter = isDragEnable)    BOOL dragEnable;

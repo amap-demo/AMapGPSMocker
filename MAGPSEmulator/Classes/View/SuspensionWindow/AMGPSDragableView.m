@@ -1,23 +1,23 @@
 //
-//  MAGPSSuspensionView.m
-//  MAGPSEmulator
+//  AMGPSDragableView.m
+//  AMGPSEmulator
 //
 //  Created by lly on 2020/3/25.
 //
 
-#import "MAGPSSuspensionView.h"
+#import "AMGPSDragableView.h"
 #import <objc/runtime.h>
 
 static CGFloat const kDefaultMargin = 60.0f;
 static CGFloat const kDefaultPadding = 5.0f;
 
-@interface MAGPSSuspensionView ()
+@interface AMGPSDragableView ()
 
 @property (assign, nonatomic) CGPoint       beginPoint;
 
 @end
 
-@implementation MAGPSSuspensionView
+@implementation AMGPSDragableView
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
