@@ -112,6 +112,10 @@ static float deltaAngle;
     
     float angleDifference = deltaAngle - ang;
     self.container.transform = CGAffineTransformRotate(self.startTransform, -angleDifference);
+    self.currentValue = atan2f(self.container.transform.b, self.container.transform.a);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(wheelDidChangeValue:)]) {
+        [self.delegate wheelDidChangeValue:self.currentValue];
+    }
     return YES;
 }
 
