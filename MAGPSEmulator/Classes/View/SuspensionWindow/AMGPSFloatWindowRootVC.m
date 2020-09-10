@@ -89,7 +89,7 @@
         _dragableView = [[AMGPSDragableView alloc] init];
         _dragableView.backgroundColor = [UIColor clearColor];
         _dragableView.userInteractionEnabled = YES;
-        _dragableView.translatesAutoresizingMaskIntoConstraints = NO;
+//        _dragableView.translatesAutoresizingMaskIntoConstraints = NO;
         [_dragableView setDragEnable:YES];
         [_dragableView setAdsorbEnable:YES];
     }
