@@ -11,7 +11,7 @@
 
 @interface MADriveCarEmulatorViewController ()<MARotaryWheelDelegate>
 
-@property (unsafe_unretained, nonatomic) IBOutlet UILabel *mileageLable;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *degreeLable;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *speedLabel;
 @property (unsafe_unretained, nonatomic) IBOutlet UIStepper *speedStepper;
 @property (unsafe_unretained, nonatomic) IBOutlet AMGPSRotaryWheel *wheel;
@@ -48,7 +48,7 @@
         currentValue = 2 * M_PI + currentValue;
     }
     CGFloat degree = currentValue * 180 / M_PI;
-    NSLog(@"current Degree:%f",degree);
+    self.degreeLable.text = [NSString stringWithFormat:@"%d",(int)degree];
     if (self.delegate && [self.delegate respondsToSelector:@selector(updateDirection:)]) {
         [self.delegate updateDirection:degree];
     }
