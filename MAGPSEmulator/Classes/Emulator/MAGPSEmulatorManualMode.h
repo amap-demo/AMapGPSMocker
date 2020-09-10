@@ -50,6 +50,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)stopEmulator;
 
+/// 展示操作浮框
+- (void)showFloatWindow;
+
 
 @end
 

@@ -38,6 +38,9 @@
 
 - (IBAction)speedStepperValueChanged:(id)sender {
     self.speedLabel.text = [NSString stringWithFormat:@"%.0fkm/h",self.speedStepper.value];
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateSpeed:)]) {
+        [self.delegate updateSpeed:self.speedStepper.value];
+    }
 }
 
 - (void)wheelDidChangeValue:(CGFloat)currentValue {
@@ -46,6 +49,9 @@
     }
     CGFloat degree = currentValue * 180 / M_PI;
     NSLog(@"current Degree:%f",degree);
+    if (self.delegate && [self.delegate respondsToSelector:@selector(updateDirection:)]) {
+        [self.delegate updateDirection:degree];
+    }
 }
 
 

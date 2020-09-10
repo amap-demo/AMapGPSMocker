@@ -7,11 +7,13 @@
 
 #import "MAGPSEmulatorManualMode.h"
 #import "MAGPSEmulatorUtil.h"
+#import "MADriveCarEmulatorViewController.h"
+#import "AMGPSFloatWindowManager.h"
 
 const double kEarthRadius = 6371393.0;
 const double kMinDegree = 0.000001;
 
-@interface MAGPSEmulatorManualMode()
+@interface MAGPSEmulatorManualMode()<MADriveCarEmulatorViewControllerDelegate>
 {
     CLLocationCoordinate2D *_oriCoordinates;
     unsigned long _count;
@@ -26,6 +28,8 @@ const double kMinDegree = 0.000001;
 @property (nonatomic, assign) double distancePerStep;
 @property (nonatomic, assign, readwrite) CLLocationCoordinate2D currentPosition;
 @property (nonatomic, assign) NSUInteger generatePointCount;//生成点的数量
+
+@property (nonatomic,strong) MADriveCarEmulatorViewController *driverCarVC;
 
 @end
 
@@ -54,6 +58,26 @@ const double kMinDegree = 0.000001;
     self.simulateSpeed = 80.0;
     self.currentPosition = kCLLocationCoordinate2DInvalid;
 }
+
+/// 展示操作浮框
+- (void)showFloatWindow {
+    self.driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
+                                                                          bundle:nil];
+    AMGPSFloatWindowManager *floatingWindowManager = [AMGPSFloatWindowManager sharedManager];
+    [floatingWindowManager showWithContent:self.driverCarVC];
+    self.driverCarVC.delegate = self;
+}
+
+//TODO: MADriveCarEmulatorViewControllerDelegate
+
+- (void)updateSpeed:(CGFloat)currentSpeed {
+    [self setSimulateSpeed:currentSpeed];
+}
+
+- (void)updateDirection:(CLLocationDirection)direction {
+    self.direction = direction;
+}
+
 
 #pragma mark - Interface
 
