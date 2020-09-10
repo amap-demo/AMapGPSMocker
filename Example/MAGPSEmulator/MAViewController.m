@@ -15,7 +15,6 @@
 @interface MAViewController ()<MAMapViewDelegate,MAGPSEmulatorDelegate>
 
 @property (nonatomic,strong) MAGPSEmulatorManualMode *emulator;
-@property (nonatomic,strong) MADriveCarEmulatorViewController *driverCarVC;
 
 @end
 
@@ -35,20 +34,12 @@
 - (void)initMapView {
     self.mapView.showsUserLocation = YES;
     self.mapView.delegate = self;
+    self.mapView.zoomLevel = 16.0;
 }
 
-- (void)showFloatingWindow {
-    self.driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
-                                                                         bundle:nil];
-    AMGPSFloatWindowManager *floatingWindowManager = [AMGPSFloatWindowManager sharedManager];
-    [floatingWindowManager showWithContent:self.driverCarVC];
-}
-
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.emulator showFloatWindow];
 }
 
 //MARK: mapViewDelegate
@@ -73,29 +64,10 @@
         annotation.coordinate = point;
         dispatch_async(dispatch_get_main_queue(), ^{
             NSLog(@"new point coordinate:%f,%f",annotation.coordinate.latitude,annotation.coordinate.longitude);
-            NSLog(@"annotationCount:%d",self.mapView.annotations.count);
+            NSLog(@"annotationCount:%lu",(unsigned long)self.mapView.annotations.count);
             [self.mapView addAnnotation:annotation];
         });
     }
 }
 
-//MARK: btnAction
-
-- (IBAction)upClicked:(id)sender {
-//    self.emulator.direction = 0;
-    [self showFloatingWindow];
-}
-- (IBAction)downClicked:(id)sender {
-    self.emulator.direction = 180;
-}
-- (IBAction)leftClicked:(id)sender {
-    self.emulator.direction = 270;
-}
-- (IBAction)rightClicked:(id)sender {
-    self.emulator.direction = 90;
-}
-
-- (IBAction)stopClicked:(id)sender {
-    [self.emulator stopEmulator];
-}
 @end
