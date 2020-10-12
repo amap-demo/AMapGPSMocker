@@ -40,8 +40,8 @@ static float deltaAngle;
 
 - (void)commonInitWithFrame:(CGRect)frame {
     self.currentValue = 0;
-    self.centerImageWidth = frame.size.width * 0.30;//总宽度的30%
-    self.minTouchDistance = self.centerImageWidth / sqrt(2);
+    self.centerImageWidth = frame.size.width * 0.80;//中心图片的总宽度改为80%
+    self.minTouchDistance = frame.size.width * 0.30 / sqrt(2);//总宽度的30%为中心位置，点击无效
     self.maxTouchDistance = frame.size.width / 2.0;
     [self drawWheel];
 }
@@ -57,9 +57,8 @@ static float deltaAngle;
     
     UIImageView *centerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.centerImageWidth, self.centerImageWidth)];
     centerImageView.image =[UIImage imageNamed:@"center_btn.png"] ;
-    centerImageView.center = self.center;
-    centerImageView.center = CGPointMake(self.center.x - self.frame.origin.x, self.center.y - self.frame.origin.y);
-    [self addSubview:centerImageView];
+    centerImageView.center = CGPointMake(self.container.center.x - self.container.frame.origin.x, self.container.center.y - self.container.frame.origin.y);
+    [self.container addSubview:centerImageView];
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(wheelDidChangeValue:)]) {
         [self.delegate wheelDidChangeValue:self.currentValue];

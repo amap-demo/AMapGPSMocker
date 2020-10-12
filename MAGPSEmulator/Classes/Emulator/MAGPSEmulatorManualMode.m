@@ -68,7 +68,7 @@ const double kMinDegree = 0.000001;
     self.driverCarVC.delegate = self;
 }
 
-//TODO: MADriveCarEmulatorViewControllerDelegate
+//MARK: MADriveCarEmulatorViewControllerDelegate
 
 - (void)updateSpeed:(CGFloat)currentSpeed {
     [self setSimulateSpeed:currentSpeed];
