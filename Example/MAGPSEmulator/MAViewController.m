@@ -15,6 +15,7 @@
 @interface MAViewController ()<MAMapViewDelegate,MAGPSEmulatorDelegate>
 
 @property (nonatomic,strong) MAGPSEmulatorManualMode *emulator;
+@property (nonatomic,strong) MAPointAnnotation *currentPointAnnotation;
 
 @end
 
@@ -51,6 +52,7 @@
             self.emulator.startPosition = userLocation.location.coordinate;
             self.emulator.direction = 0;
             [self.emulator startEmulator];
+            [self.mapView showAnnotations:@[userLocation] animated:YES];
         });
     }
 }
@@ -60,14 +62,23 @@
     NSLog(@"gpsEmulatorUpdateLocation:%@",location);
     CLLocationCoordinate2D point = location.coordinate;
     if (CLLocationCoordinate2DIsValid(point)) {
-        MAPointAnnotation *annotation = [[MAPointAnnotation alloc] init];
-        annotation.coordinate = point;
+        MAPointAnnotation *annotation = self.currentPointAnnotation;
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"new point coordinate:%f,%f",annotation.coordinate.latitude,annotation.coordinate.longitude);
-            NSLog(@"annotationCount:%lu",(unsigned long)self.mapView.annotations.count);
-            [self.mapView addAnnotation:annotation];
+            annotation.coordinate = point;
+            if ([self.mapView.annotations containsObject:annotation]) {
+                return;
+            } else {
+                [self.mapView addAnnotation:annotation];
+            }
         });
     }
+}
+
+- (MAPointAnnotation *)currentPointAnnotation {
+    if (_currentPointAnnotation == nil) {
+        _currentPointAnnotation = [[MAPointAnnotation alloc] init];
+    }
+    return _currentPointAnnotation;
 }
 
 @end
