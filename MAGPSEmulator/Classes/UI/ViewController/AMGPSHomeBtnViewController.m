@@ -31,10 +31,10 @@ CGFloat const kBtnWidth = 50.0;
     [self.view addSubview:_homeBtn];
     
     [NSLayoutConstraint activateConstraints:@[
-        [NSLayoutConstraint constraintWithItem:_homeBtn attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_homeBtn attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_homeBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_homeBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+        [_homeBtn.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [_homeBtn.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor],
+        [_homeBtn.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [_homeBtn.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
     ]];
 }
 

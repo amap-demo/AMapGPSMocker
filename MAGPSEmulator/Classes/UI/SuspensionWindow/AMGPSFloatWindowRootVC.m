@@ -29,16 +29,17 @@
     [self.view addSubview:self.dragableView];
     
     //设置默认位置,这里实际可以不添加任何约束，dragableView和其subView，即contentVC的View建立约束关系，其大小由其subView的约束间接控制
-//    CGFloat heightOfScreen = [UIScreen mainScreen].bounds.size.height;
-//    CGFloat widthOfScreen = [UIScreen mainScreen].bounds.size.width;
+    CGFloat heightOfScreen = [UIScreen mainScreen].bounds.size.height;
+    CGFloat widthOfScreen = [UIScreen mainScreen].bounds.size.width;
 //    CGFloat widthOfView = MIN(heightOfScreen, widthOfScreen) * 0.3;
-//    NSArray<NSLayoutConstraint *> *constraints = @[[self.dragableView.widthAnchor constraintEqualToConstant:widthOfView],
-//                                                   [self.dragableView.heightAnchor constraintEqualToConstant:widthOfView * 9/ 16]];
-//    
-//    for (NSLayoutConstraint *constraint in constraints) {
-//        constraint.priority = UILayoutPriorityDefaultHigh;
-//    }
-//    [self.view addConstraints:constraints];
+    NSArray<NSLayoutConstraint *> *constraints = @[
+        [self.dragableView.widthAnchor constraintLessThanOrEqualToConstant:widthOfScreen],
+        [self.dragableView.heightAnchor constraintLessThanOrEqualToConstant:heightOfScreen]];
+    
+    for (NSLayoutConstraint *constraint in constraints) {
+        constraint.priority = UILayoutPriorityDefaultHigh;
+    }
+    [self.view addConstraints:constraints];
     //点击事件和手势
 //    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTap:)];
 //    tapGesture.numberOfTapsRequired = 1;

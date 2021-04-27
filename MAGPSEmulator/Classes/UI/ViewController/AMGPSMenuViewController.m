@@ -6,6 +6,8 @@
 //
 
 #import "AMGPSMenuViewController.h"
+#import "AMGPSPostionEditViewController.h"
+#import "AMGPSFloatWindowManager.h"
 
 @interface AMGPSMenuViewController ()
 
@@ -25,11 +27,13 @@
     [self.view addSubview:_routePosBtn];
     
     [NSLayoutConstraint activateConstraints:@[
-        [NSLayoutConstraint constraintWithItem:_singlePosBtn attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_singlePosBtn attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_singlePosBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeTop multiplier:1.0 constant:0],
-        [NSLayoutConstraint constraintWithItem:_routePosBtn attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:_singlePosBtn attribute:NSLayoutAttributeBottom multiplier:1.0 constant:25],
-        [NSLayoutConstraint constraintWithItem:_routePosBtn attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0]
+        [self.view.widthAnchor constraintEqualToConstant:100],
+        [self.view.heightAnchor constraintEqualToConstant:125],
+        [_singlePosBtn.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [_singlePosBtn.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+        [_routePosBtn.topAnchor constraintEqualToAnchor:_singlePosBtn.bottomAnchor constant:25],
+        [_routePosBtn.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [_routePosBtn.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
     ]];
 }
 
@@ -40,8 +44,8 @@
     btn.backgroundColor = [UIColor whiteColor];
     [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [NSLayoutConstraint activateConstraints:@[
-        [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50],
-        [NSLayoutConstraint constraintWithItem:btn attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:50]
+        [btn.widthAnchor constraintEqualToConstant:50],
+        [btn.heightAnchor constraintEqualToConstant:50]
     ]];
     btn.layer.cornerRadius = 25.0;
     [btn addTarget:self
@@ -51,7 +55,11 @@
 }
 
 - (void)singlePosBtnClicked:(id)sender {
-    NSLog(@"single clicked！");
+    AMGPSPostionEditViewController *posEditVC = [[AMGPSPostionEditViewController alloc] initWithNibName:NSStringFromClass([AMGPSPostionEditViewController class]) bundle:nil];
+    [[AMGPSFloatWindowManager sharedManager].rootVC presentViewController:posEditVC
+                                                                 animated:YES
+                                                               completion:nil];
+//    [[AMGPSFloatWindowManager sharedManager] showWithContent:posEditVC];
 }
 
 - (void)routePosBtn:(id)sender {
