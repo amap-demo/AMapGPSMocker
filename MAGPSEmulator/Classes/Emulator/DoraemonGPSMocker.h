@@ -11,6 +11,8 @@
 //参考wander
 @interface DoraemonGPSMocker : NSObject
 
+@property (nonatomic, assign, readonly) BOOL isMocking;
+
 + (DoraemonGPSMocker *)shareInstance;
 
 - (void)addLocationBinder:(id)binder delegate:(id)delegate;
@@ -18,7 +20,5 @@
 - (BOOL)mockPoint:(CLLocation*)location;
 
 - (void)stopMockPoint;
-
-@property (nonatomic, assign) BOOL isMocking;
 
 @end

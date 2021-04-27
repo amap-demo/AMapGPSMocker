@@ -15,6 +15,7 @@
 @property (nonatomic,strong) CLLocation *oldLocation;
 @property (nonatomic, strong) CLLocation *pointLocation;
 @property (nonatomic,strong) NSTimer *simTimer;
+@property (nonatomic, assign, readwrite) BOOL isMocking;
 
 @end
 
