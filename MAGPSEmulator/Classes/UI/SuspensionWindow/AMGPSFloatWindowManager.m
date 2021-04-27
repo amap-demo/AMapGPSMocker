@@ -13,7 +13,6 @@
 @interface AMGPSFloatWindowManager () <MAGPSSuspensionWindowDelegate, MAGPSSuspensionVCDelegate>
 
 @property (nonatomic,strong) AMGPSFloatWindow *floatWindow;
-@property (nonatomic,strong) AMGPSFloatWindowRootVC *rootVC;
 @property (nonatomic,weak)   UIViewController *contentVC;
 
 
