@@ -1,10 +1,10 @@
 #use_frameworks!//不使用动态库
 
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'MAGPSEmulator_Example' do
   pod 'MAGPSEmulator', :path => '../'
-  pod 'AMap3DMap'
+  pod 'AMap3DMap', '~> 7.9.0'
 
   target 'MAGPSEmulator_Tests' do
     inherit! :search_paths

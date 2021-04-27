@@ -1,11 +1,11 @@
 PODS:
-  - AMap3DMap (7.2.0):
-    - AMapFoundation (~> 1.5)
-  - AMapFoundation (1.6.2)
+  - AMap3DMap (7.9.0):
+    - AMapFoundation (~> 1.6.6)
+  - AMapFoundation (1.6.6)
   - MAGPSEmulator (0.1.0)
 
 DEPENDENCIES:
-  - AMap3DMap
+  - AMap3DMap (~> 7.9.0)
   - MAGPSEmulator (from `../`)
 
 SPEC REPOS:
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AMap3DMap: be13191194c9aeb29a67d9d3e9a797588fb329aa
-  AMapFoundation: 672dc3a4759cb733f447c1e1b020f7ba2729f4ab
+  AMap3DMap: 4ff760f011b89aec85edd8b5fcf90d384aae1202
+  AMapFoundation: 2d012d9aaa7a5c0d387ddb1a8c5f03e1d6df29b8
   MAGPSEmulator: 22576f94608a2d97830132fbb158b21d1567b2c9
 
-PODFILE CHECKSUM: 52dd1c5e4fe39986aad43c634010623746ab3d7e
+PODFILE CHECKSUM: 1806b42d4020ee1e4bcb2e46321095ec2ada44a7
 
 COCOAPODS: 1.10.0
