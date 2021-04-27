@@ -6,8 +6,8 @@
 //
 
 #import "AMGPSHomeBtnViewController.h"
-#import "MADriveCarEmulatorViewController.h"
 #import "AMGPSFloatWindowManager.h"
+#import "AMGPSMenuViewController.h"
 
 CGFloat const kBtnWidth = 50.0;
 
@@ -39,11 +39,8 @@ CGFloat const kBtnWidth = 50.0;
 }
 
 - (void)homeBtnClicked:(id)sender {
-    MADriveCarEmulatorViewController *driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
-                                                                          bundle:nil];
-    AMGPSFloatWindowManager *floatingWindowManager = [AMGPSFloatWindowManager sharedManager];
-    [floatingWindowManager showWithContent:driverCarVC];
-//    self.driverCarVC.delegate = self;
+    AMGPSMenuViewController *menuVC = [[AMGPSMenuViewController alloc] init];
+    [[AMGPSFloatWindowManager sharedManager] showWithContent:menuVC];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "MAGPSEmulatorUtil.h"
 #import "MADriveCarEmulatorViewController.h"
 #import "AMGPSFloatWindowManager.h"
+#import "AMGPSHomeBtnViewController.h"
 
 const double kEarthRadius = 6371393.0;
 const double kMinDegree = 0.000001;
@@ -63,8 +64,9 @@ const double kMinDegree = 0.000001;
 - (void)showFloatWindow {
     self.driverCarVC = [[MADriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([MADriveCarEmulatorViewController class])
                                                                           bundle:nil];
+    AMGPSHomeBtnViewController *homeVC = [[AMGPSHomeBtnViewController alloc] init];
     AMGPSFloatWindowManager *floatingWindowManager = [AMGPSFloatWindowManager sharedManager];
-    [floatingWindowManager showWithContent:self.driverCarVC];
+    [floatingWindowManager showWithContent:homeVC];
     self.driverCarVC.delegate = self;
 }
 

@@ -351,7 +351,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-resources.sh",
 				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
-				"${PODS_ROOT}/../../MAGPSEmulator/Classes/View/MADriveCarEmulatorViewController.xib",
+				"${PODS_ROOT}/../../MAGPSEmulator/Classes/UI/ViewController/MADriveCarEmulatorViewController.xib",
 				"${PODS_ROOT}/../../MAGPSEmulator/Assets/center_btn.png",
 				"${PODS_ROOT}/../../MAGPSEmulator/Assets/wheel@2x.png",
 			);
