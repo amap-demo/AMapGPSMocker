@@ -2,7 +2,8 @@ PODS:
   - AMap3DMap (7.9.0):
     - AMapFoundation (~> 1.6.6)
   - AMapFoundation (1.6.6)
-  - MAGPSEmulator (0.1.0)
+  - MAGPSEmulator (0.1.0):
+    - AMap3DMap (~> 7.0)
 
 DEPENDENCIES:
   - AMap3DMap (~> 7.9.0)
@@ -20,7 +21,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AMap3DMap: 4ff760f011b89aec85edd8b5fcf90d384aae1202
   AMapFoundation: 2d012d9aaa7a5c0d387ddb1a8c5f03e1d6df29b8
-  MAGPSEmulator: 22576f94608a2d97830132fbb158b21d1567b2c9
+  MAGPSEmulator: 79de9a5e8cb660155c1d7e399586a1639e1829bc
 
 PODFILE CHECKSUM: 1806b42d4020ee1e4bcb2e46321095ec2ada44a7
 

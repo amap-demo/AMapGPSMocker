@@ -28,7 +28,7 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'git@gitlab.alibaba-inc.com:AMapOP-trip/MAGPSEmulator.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'MAGPSEmulator/Classes/**/*.{h,m}'
   
@@ -40,5 +40,5 @@ TODO: Add long description of the pod here.
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'AMap3DMap', '~> 7.0'
 end

@@ -351,6 +351,7 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-MAGPSEmulator_Example/Pods-MAGPSEmulator_Example-resources.sh",
 				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
+				"${PODS_ROOT}/../../MAGPSEmulator/Classes/UI/ViewController/AMGPSPostionEditViewController.xib",
 				"${PODS_ROOT}/../../MAGPSEmulator/Classes/UI/ViewController/MADriveCarEmulatorViewController.xib",
 				"${PODS_ROOT}/../../MAGPSEmulator/Assets/center_btn.png",
 				"${PODS_ROOT}/../../MAGPSEmulator/Assets/wheel@2x.png",
@@ -358,6 +359,7 @@
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMGPSPostionEditViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MADriveCarEmulatorViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/center_btn.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/wheel@2x.png",
