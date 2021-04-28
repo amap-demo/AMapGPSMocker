@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMGPSPostionEditViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AMGPSPositionEditViewController">
             <connections>
                 <outlet property="inputTextField" destination="S2r-gu-fs0" id="VuS-1g-BVQ"/>
                 <outlet property="mapView" destination="vD0-gf-WQq" id="0cr-IA-wbL"/>

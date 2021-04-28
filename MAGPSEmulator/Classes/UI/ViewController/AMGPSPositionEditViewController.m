@@ -1,15 +1,15 @@
 //
-//  AMGPSPostionEditViewController.m
+//  AMGPSPositionEditViewController.m
 //  MAGPSEmulator
 //
 //  Created by lly on 2021/4/27.
 //
 
-#import "AMGPSPostionEditViewController.h"
+#import "AMGPSPositionEditViewController.h"
 #import <MAMapKit/MAMapView.h>
 #import "DoraemonGPSMocker.h"
 
-@interface AMGPSPostionEditViewController ()<UITextFieldDelegate,MAMapViewDelegate>
+@interface AMGPSPositionEditViewController ()<UITextFieldDelegate,MAMapViewDelegate>
 
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *inputTextField;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation AMGPSPostionEditViewController
+@implementation AMGPSPositionEditViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

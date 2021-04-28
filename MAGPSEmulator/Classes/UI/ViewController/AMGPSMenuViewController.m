@@ -6,7 +6,7 @@
 //
 
 #import "AMGPSMenuViewController.h"
-#import "AMGPSPostionEditViewController.h"
+#import "AMGPSPositionEditViewController.h"
 #import "AMGPSFloatWindowManager.h"
 
 @interface AMGPSMenuViewController ()
@@ -55,7 +55,7 @@
 }
 
 - (void)singlePosBtnClicked:(id)sender {
-    AMGPSPostionEditViewController *posEditVC = [[AMGPSPostionEditViewController alloc] initWithNibName:NSStringFromClass([AMGPSPostionEditViewController class]) bundle:nil];
+    AMGPSPositionEditViewController *posEditVC = [[AMGPSPositionEditViewController alloc] initWithNibName:NSStringFromClass([AMGPSPositionEditViewController class]) bundle:nil];
     [[AMGPSFloatWindowManager sharedManager].rootVC presentViewController:posEditVC
                                                                  animated:YES
                                                                completion:nil];
