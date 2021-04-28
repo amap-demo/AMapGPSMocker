@@ -8,7 +8,7 @@
 #import "AMGPSPositionEditViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import "DoraemonGPSMocker.h"
-#import "FDLocationCoordinateUtil.h"
+#import "AMGPSCoordConvertUtil.h"
 #import "AMGPSUtil.h"
 
 @interface AMGPSPositionEditViewController ()<UITextFieldDelegate,MAMapViewDelegate>
@@ -54,7 +54,7 @@
 
 - (void)mockPoint:(CLLocationCoordinate2D)coord {
     if (CLLocationCoordinate2DIsValid(coord)) {
-        CLLocationCoordinate2D coord84 = [FDLocationCoordinateUtil gcj02ToWgs84:coord];
+        CLLocationCoordinate2D coord84 = [AMGPSCoordConvertUtil gcj02ToWgs84:coord];
         CLLocation *locaiton = [[CLLocation alloc] initWithLatitude:coord84.latitude
                                                           longitude:coord84.longitude];
         [[DoraemonGPSMocker shareInstance] mockPoint:locaiton];

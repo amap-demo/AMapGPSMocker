@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface FDLocationCoordinateUtil : NSObject
+@interface AMGPSCoordConvertUtil : NSObject
 /**
  *  @brief  世界标准地理坐标(WGS-84) 转换成 中国国测局地理坐标（GCJ-02）<火星坐标>
  *

@@ -31,7 +31,7 @@
         }
         free(methods);
         
-    }else{
+    } else {
         [self doraemon_swizzleLocationDelegate:delegate];
     }
 }
