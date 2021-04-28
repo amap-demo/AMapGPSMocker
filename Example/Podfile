@@ -2,11 +2,11 @@
 
 platform :ios, '9.0'
 
-target 'MAGPSEmulator_Example' do
-  pod 'MAGPSEmulator', :path => '../'
+target 'AMapGPSMocker_Example' do
+  pod 'AMapGPSMocker', :path => '../'
   pod 'AMap3DMap', '~> 7.9.0'
 
-  target 'MAGPSEmulator_Tests' do
+  target 'AMapGPSMocker_Tests' do
     inherit! :search_paths
 
     
