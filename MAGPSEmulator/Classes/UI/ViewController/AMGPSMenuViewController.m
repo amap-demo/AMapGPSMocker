@@ -8,11 +8,13 @@
 #import "AMGPSMenuViewController.h"
 #import "AMGPSPositionEditViewController.h"
 #import "AMGPSFloatWindowManager.h"
+#import "AMGPSHomeBtnViewController.h"
 
 @interface AMGPSMenuViewController ()
 
 @property (nonatomic,strong) UIButton *singlePosBtn;
 @property (nonatomic,strong) UIButton *routePosBtn;
+@property (nonatomic,strong) UIButton *gobackBtn;
 
 @end
 
@@ -22,18 +24,22 @@
     [super viewDidLoad];
     self.view.translatesAutoresizingMaskIntoConstraints = NO;
     self.singlePosBtn = [self creatBtnWithTitle:@"单点" andAction:@selector(singlePosBtnClicked:)];
-    self.routePosBtn = [self creatBtnWithTitle:@"多点" andAction:@selector(routePosBtn:)];
+    self.routePosBtn = [self creatBtnWithTitle:@"多点" andAction:@selector(routePosBtnClicked:)];
+    self.gobackBtn = [self creatBtnWithTitle:@"返回" andAction:@selector(gobackBtnClicked:)];
     [self.view addSubview:_singlePosBtn];
     [self.view addSubview:_routePosBtn];
+    [self.view addSubview:_gobackBtn];
     
     [NSLayoutConstraint activateConstraints:@[
         [self.view.widthAnchor constraintEqualToConstant:100],
         [self.view.heightAnchor constraintEqualToConstant:125],
-        [_singlePosBtn.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
+        [_singlePosBtn.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
         [_singlePosBtn.topAnchor constraintEqualToAnchor:self.view.topAnchor],
         [_routePosBtn.topAnchor constraintEqualToAnchor:_singlePosBtn.bottomAnchor constant:25],
-        [_routePosBtn.centerXAnchor constraintEqualToAnchor:self.view.centerXAnchor],
-        [_routePosBtn.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+        [_routePosBtn.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor],
+        [_routePosBtn.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
+        [_gobackBtn.centerYAnchor constraintEqualToAnchor:self.view.centerYAnchor],
+        [_gobackBtn.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor]
     ]];
 }
 
@@ -59,11 +65,15 @@
     [[AMGPSFloatWindowManager sharedManager].rootVC presentViewController:posEditVC
                                                                  animated:YES
                                                                completion:nil];
-//    [[AMGPSFloatWindowManager sharedManager] showWithContent:posEditVC];
 }
 
-- (void)routePosBtn:(id)sender {
+- (void)routePosBtnClicked:(id)sender {
     NSLog(@"route clicked！");
+}
+
+- (void)gobackBtnClicked:(id)sender {
+    AMGPSHomeBtnViewController *homeVC = [[AMGPSHomeBtnViewController alloc] init];
+    [[AMGPSFloatWindowManager sharedManager] showWithContent:homeVC];
 }
 
 @end
