@@ -40,7 +40,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vE2-Al-TnP">
-                                    <rect key="frame" x="274" y="10" width="52" height="31"/>
+                                    <rect key="frame" x="276" y="10" width="52" height="31"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="31" id="MNv-CO-QPA"/>
                                         <constraint firstAttribute="width" constant="50" id="ie4-Yu-r9L"/>
@@ -55,7 +55,7 @@
                                 <constraint firstItem="Glq-SQ-Y1X" firstAttribute="centerY" secondItem="jk8-4M-IsG" secondAttribute="centerY" id="Itg-nL-uL6"/>
                                 <constraint firstItem="vE2-Al-TnP" firstAttribute="centerY" secondItem="jk8-4M-IsG" secondAttribute="centerY" id="JXf-XF-GZR"/>
                                 <constraint firstItem="Glq-SQ-Y1X" firstAttribute="leading" secondItem="jk8-4M-IsG" secondAttribute="leading" constant="8" id="Qw2-jD-lKU"/>
-                                <constraint firstAttribute="trailing" secondItem="vE2-Al-TnP" secondAttribute="trailing" constant="10" id="gsF-6Z-Bxx"/>
+                                <constraint firstAttribute="trailing" secondItem="vE2-Al-TnP" secondAttribute="trailing" constant="8" id="gsF-6Z-Bxx"/>
                                 <constraint firstAttribute="height" constant="51" id="sWd-3l-1zs"/>
                             </constraints>
                         </view>

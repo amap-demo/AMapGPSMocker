@@ -7,6 +7,7 @@
 
 #import "AGMMenuViewController.h"
 #import "AGMPositionEditViewController.h"
+#import "AGMRouteEditViewController.h"
 #import "AGMFloatWindowManager.h"
 #import "AGMHomeBtnViewController.h"
 
@@ -68,7 +69,10 @@
 }
 
 - (void)routePosBtnClicked:(id)sender {
-    NSLog(@"route clicked！");
+    AGMRouteEditViewController *routeEditVC = [[AGMRouteEditViewController alloc] initWithNibName:NSStringFromClass([AGMRouteEditViewController class]) bundle:nil];
+    [[AGMFloatWindowManager sharedManager].rootVC presentViewController:routeEditVC
+                                                               animated:YES
+                                                             completion:nil];
 }
 
 - (void)gobackBtnClicked:(id)sender {
