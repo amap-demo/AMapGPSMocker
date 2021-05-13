@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)sharedManager;
 
+/// 展示默认浮框
+- (void)showFloatWindow;
+
 //显示浮窗
 - (void)showWithContent:(UIViewController *)contentVC;
 

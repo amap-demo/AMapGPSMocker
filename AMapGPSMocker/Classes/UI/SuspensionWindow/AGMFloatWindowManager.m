@@ -9,6 +9,7 @@
 #import "AGMFloatWindowManager.h"
 #import "AGMFloatWindow.h"
 #import "AGMFloatWindowRootVC.h"
+#import "AGMHomeBtnViewController.h"
 
 @interface AGMFloatWindowManager () <AGMFloatWindowDelegate, AGMFloatWindowRootVCDelegate>
 
@@ -40,8 +41,7 @@
 
 #pragma mark - Public Function
 
-+ (instancetype)sharedManager
-{
++ (instancetype)sharedManager {
     static AGMFloatWindowManager *sharedManager = nil;
     
     static dispatch_once_t onceToken;
@@ -50,6 +50,12 @@
     });
     
     return sharedManager;
+}
+
+/// 展示默认浮框
+- (void)showFloatWindow {
+    AGMHomeBtnViewController *homeVC = [[AGMHomeBtnViewController alloc] init];
+    [self showWithContent:homeVC];
 }
 
 - (void)showWithContent:(UIViewController *)contentVC {
