@@ -56,7 +56,7 @@
     method_exchangeImplementations(oriSel, swizSel);
 }
 
--(BOOL)mockPoint:(CLLocation*)location{
+- (void)startMockPoint:(CLLocation*)location{
     _isMocking = YES;
     self.pointLocation = location;
     if (self.simTimer) {
@@ -65,11 +65,14 @@
         self.simTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(pointMock) userInfo:nil repeats:YES];
         [self.simTimer fire];
     }
-    return YES;
 }
 
 - (void)pointMock {
-    CLLocation *mockLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.pointLocation.coordinate.latitude, self.pointLocation.coordinate.longitude) altitude:0 horizontalAccuracy:5 verticalAccuracy:5 timestamp:[NSDate date]];
+    CLLocation *mockLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.pointLocation.coordinate.latitude, self.pointLocation.coordinate.longitude)
+                                                             altitude:self.pointLocation.altitude
+                                                   horizontalAccuracy:self.pointLocation.horizontalAccuracy
+                                                     verticalAccuracy:self.pointLocation.verticalAccuracy
+                                                            timestamp:[NSDate date]];
     [self dispatchLocationsToAll:@[mockLocation]];
 }
 

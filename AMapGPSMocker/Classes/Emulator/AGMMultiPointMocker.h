@@ -8,49 +8,37 @@
 @required
 
 /**
- *  Called when GPS emulator produce new location.
+ *  回调mock的新位置
  *
- *  @param location a new location
+ *  @param location 新的位置
  */
 - (void)gpsEmulatorUpdateLocation:(CLLocation *)location;
 
 @end
 
 
-/// 多个连续点模拟器（如路线等）
+/// 多个连续点模拟器（如mock路线行驶等）
 @interface AGMMultiPointMocker : NSObject
 
-/**
- *  A object adopt the ATGPSEmulatorDelegate protocol
- */
 @property (nonatomic, weak) id<AGMMultiPointMockerDelegate> delegate;
 
-/**
- *  Indicate whether the GPS emulator isSimulating.
- */
-@property (atomic, readonly) BOOL isSimulating;
+@property (atomic, readonly) BOOL isMocking;
 
 /**
- *  Simulate Speed(Unit: km/h; Default: 60km/h;)
+ *  连续mock时的速度(单位: km/h; 默认值: 60km/h;)
  */
 @property (nonatomic, assign) double simulateSpeed;
 
 /**
- *  Assign coordiantes that used for simulate. Invoke this method after start emulator has no effect.
- *
- *  @param coordinates coordinate list
- *  @param count coordiantes count
+ *  设置模拟行驶路线的关键坐标点（如起终点、路口，拐角等位置的坐标点）
+ *  注意：该方法需要在startMockPoint之前调用，开始mock之后，设置无效
+ *  @param coordinates 关键坐标列表
+ *  @param count 关键坐标数量
  */
-- (void)setCoordinates:(CLLocationCoordinate2D *)coordinates count:(unsigned long)count;
+- (void)setKeyCoordinates:(CLLocationCoordinate2D *)coordinates count:(unsigned long)count;
 
-/**
- *  Start Emulator
- */
-- (void)startEmulator;
+- (void)startMockPoint;
 
-/**
- *  Stop Emulator
- */
-- (void)stopEmulator;
+- (void)stopMockPoint;
 
 @end

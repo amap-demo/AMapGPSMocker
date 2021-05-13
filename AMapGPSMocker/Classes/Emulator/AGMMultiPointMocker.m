@@ -11,7 +11,7 @@
 }
 
 @property (nonatomic, strong) NSThread *locationsThread;
-@property (atomic, assign) BOOL isSimulating;
+@property (atomic, assign) BOOL isMocking;
 @property (nonatomic, assign) double timeInverval;
 
 @property (nonatomic, strong) NSRecursiveLock *lock;
@@ -33,13 +33,13 @@
 }
 
 - (void)dealloc {
-    [self stopEmulator];
+    [self stopMockPoint];
 
     [self deleteCoordinates];
 }
 
 - (void)initProperties {
-    _isSimulating = NO;
+    _isMocking = NO;
     _timeInverval = 0.2f;
 
     self.lock = [[NSRecursiveLock alloc] init];
@@ -57,8 +57,8 @@
     [self.lock unlock];
 }
 
-- (void)setCoordinates:(CLLocationCoordinate2D *)coordinates count:(unsigned long)count {
-    if (self.isSimulating) {
+- (void)setKeyCoordinates:(CLLocationCoordinate2D *)coordinates count:(unsigned long)count {
+    if (self.isMocking) {
         return;
     }
 
@@ -76,8 +76,8 @@
     }
 }
 
-- (void)startEmulator {
-    if (self.isSimulating) {
+- (void)startMockPoint {
+    if (self.isMocking) {
         return;
     }
 
@@ -86,20 +86,20 @@
         _locationsThread = nil;
     }
 
-    self.isSimulating = YES;
+    self.isMocking = YES;
 
     _locationsThread = [[NSThread alloc] initWithTarget:self selector:@selector(locationThreadEntryMethod) object:nil];
-    [_locationsThread setName:@"com.amap.MAGPSEmulatorThread.coordinate"];
+    [_locationsThread setName:@"com.amap.AGMMultiPointMockThread.coordinate"];
     [_locationsThread start];
 }
 
-- (void)stopEmulator {
+- (void)stopMockPoint {
     if (_locationsThread) {
         [_locationsThread cancel];
         _locationsThread = nil;
     }
 
-    self.isSimulating = NO;
+    self.isMocking = NO;
 }
 
 #pragma mark - Mehtods
@@ -163,7 +163,7 @@
             [self invokeDelegateWithCoordinate:resultCoordinate course:course];
         }
     }
-    self.isSimulating = NO; //到达终点，循环结束后走到这里
+    self.isMocking = NO; //到达终点，循环结束后走到这里
 }
 
 - (void)invokeDelegateWithCoordinate:(CLLocationCoordinate2D)coordinate course:(CLLocationDirection)course {

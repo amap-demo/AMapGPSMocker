@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+//开发中，暂时不对外
 @interface AGMManualMode : NSObject
 
 /**
@@ -49,10 +50,6 @@ NS_ASSUME_NONNULL_BEGIN
  *  Stop Emulator
  */
 - (void)stopEmulator;
-
-/// 展示操作浮框
-- (void)showFloatWindow;
-
 
 @end
 

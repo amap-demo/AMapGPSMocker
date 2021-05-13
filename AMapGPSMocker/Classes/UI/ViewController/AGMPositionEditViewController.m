@@ -57,7 +57,7 @@
         CLLocationCoordinate2D coord84 = [AGMCoordConvertUtil wgs84FromGcj02:coord];
         CLLocation *locaiton = [[CLLocation alloc] initWithLatitude:coord84.latitude
                                                           longitude:coord84.longitude];
-        [[AGMSinglePointMocker shareInstance] mockPoint:locaiton];
+        [[AGMSinglePointMocker shareInstance] startMockPoint:locaiton];
     } else {
         NSLog(@"经纬度无效");
     }

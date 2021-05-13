@@ -7,8 +7,6 @@
 
 #import "AGMManualMode.h"
 #import "AGMDriveCarEmulatorViewController.h"
-#import "AGMFloatWindowManager.h"
-#import "AGMHomeBtnViewController.h"
 #import "AGMCaclUtil.h"
 
 const double kEarthRadius = 6371393.0;
@@ -58,16 +56,6 @@ const double kMinDegree = 0.000001;
     self.lock = [[NSRecursiveLock alloc] init];
     self.simulateSpeed = 80.0;
     self.currentPosition = kCLLocationCoordinate2DInvalid;
-}
-
-/// 展示操作浮框
-- (void)showFloatWindow {
-    self.driverCarVC = [[AGMDriveCarEmulatorViewController alloc] initWithNibName:NSStringFromClass([AGMDriveCarEmulatorViewController class])
-                                                                          bundle:nil];
-    AGMHomeBtnViewController *homeVC = [[AGMHomeBtnViewController alloc] init];
-    AGMFloatWindowManager *floatingWindowManager = [AGMFloatWindowManager sharedManager];
-    [floatingWindowManager showWithContent:homeVC];
-    self.driverCarVC.delegate = self;
 }
 
 //MARK: MADriveCarEmulatorViewControllerDelegate

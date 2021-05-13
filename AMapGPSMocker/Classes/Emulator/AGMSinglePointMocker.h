@@ -15,7 +15,7 @@
 
 + (AGMSinglePointMocker *)shareInstance;
 
-- (BOOL)mockPoint:(CLLocation*)location;
+- (void)startMockPoint:(CLLocation*)location;
 
 - (void)stopMockPoint;
 
