@@ -12,7 +12,7 @@
 #import "AGMFloatWindowManager.h"
 #import "AGMDriveCarEmulatorViewController.h"
 
-@interface AGMViewController ()<MAMapViewDelegate,AGMMultiPointMockerDelegate>
+@interface AGMViewController ()<MAMapViewDelegate,AGMManualModeDelegate>
 
 //@property (nonatomic,strong) AGMManualMode *emulator;
 //@property (nonatomic,strong) MAPointAnnotation *currentPointAnnotation;

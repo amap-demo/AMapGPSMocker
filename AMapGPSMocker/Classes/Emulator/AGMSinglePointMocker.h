@@ -13,7 +13,7 @@
 
 @property (nonatomic, assign, readonly) BOOL isMocking;
 
-+ (AGMSinglePointMocker *)shareInstance;
++ (instancetype)sharedInstance;
 
 - (void)startMockPoint:(CLLocation*)location;
 

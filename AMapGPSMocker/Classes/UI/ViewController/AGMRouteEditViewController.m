@@ -8,6 +8,8 @@
 #import "AGMRouteEditViewController.h"
 #import <MAMapKit/MAMapKit.h>
 #import "AGMCaclUtil.h"
+#import "AGMMultiPointMocker.h"
+#import "AGMCoordConvertUtil.h"
 
 @interface AGMRouteEditViewController ()<MAMapViewDelegate,UITextViewDelegate>
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
@@ -104,7 +106,28 @@
 }
 
 - (IBAction)switchChanged:(id)sender {
-    
+    if (self.mockSwitch.on) {
+        [self mockPoints:_routeCoords count:_coordCount];
+    } else {
+        [[AGMMultiPointMocker sharedInstance] stopMockPoint];
+    }
+}
+
+- (void)mockPoints:(CLLocationCoordinate2D *)coords count:(NSUInteger)count {
+    if (coords == NULL || count <= 0) {
+        return;
+    }
+    CLLocationCoordinate2D *keyCoords = (CLLocationCoordinate2D *)malloc(count * sizeof(CLLocationCoordinate2D));
+    for (NSUInteger index = 0; index < count; index++) {
+        if (CLLocationCoordinate2DIsValid(coords[index])) {
+            keyCoords[index] = [AGMCoordConvertUtil wgs84FromGcj02:coords[index]];
+        } else {
+            NSLog(@"经纬度无效");
+            return;
+        }
+    }
+    [[AGMMultiPointMocker sharedInstance] setKeyCoordinates:keyCoords count:count];
+    [[AGMMultiPointMocker sharedInstance] startMockPoint];
 }
 
 - (void)resetCurrentPointWithCoord:(CLLocationCoordinate2D)coord {

@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.inputTextField.delegate = self;
-    self.mockSwitch.on = [AGMSinglePointMocker shareInstance].isMocking;
+    self.mockSwitch.on = [AGMSinglePointMocker sharedInstance].isMocking;
     [self initMapView];
 }
 
@@ -57,7 +57,7 @@
         CLLocationCoordinate2D coord84 = [AGMCoordConvertUtil wgs84FromGcj02:coord];
         CLLocation *locaiton = [[CLLocation alloc] initWithLatitude:coord84.latitude
                                                           longitude:coord84.longitude];
-        [[AGMSinglePointMocker shareInstance] startMockPoint:locaiton];
+        [[AGMSinglePointMocker sharedInstance] startMockPoint:locaiton];
     } else {
         NSLog(@"经纬度无效");
     }
@@ -67,7 +67,7 @@
     if (self.mockSwitch.on) {
         [self mockPoint:_mockCoord];
     } else {
-        [[AGMSinglePointMocker shareInstance] stopMockPoint];
+        [[AGMSinglePointMocker sharedInstance] stopMockPoint];
     }
 }
 

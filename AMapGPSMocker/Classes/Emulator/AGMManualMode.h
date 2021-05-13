@@ -6,9 +6,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AGMMultiPointMocker.h"
+#import <CoreLocation/CoreLocation.h>
 
 NS_ASSUME_NONNULL_BEGIN
+
+@protocol AGMManualModeDelegate <NSObject>
+@required
+
+/**
+ *  回调mock的新位置
+ *
+ *  @param location 新的位置
+ */
+- (void)gpsEmulatorUpdateLocation:(CLLocation *)location;
+
+@end
 
 //开发中，暂时不对外
 @interface AGMManualMode : NSObject
@@ -16,7 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  *  A object adopt the ATGPSEmulatorDelegate protocol
  */
-@property (nonatomic, weak) id<AGMMultiPointMockerDelegate> delegate;
+@property (nonatomic, weak) id<AGMManualModeDelegate> delegate;
 
 /**
  *  Indicate whether the GPS emulator isSimulating.

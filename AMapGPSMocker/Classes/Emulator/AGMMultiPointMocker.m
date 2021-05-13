@@ -3,6 +3,7 @@
 
 #import "AGMMultiPointMocker.h"
 #import "AGMCaclUtil.h"
+#import "AGMSinglePointMocker.h"
 
 @interface AGMMultiPointMocker ()
 {
@@ -18,12 +19,23 @@
 @property (nonatomic, assign) double speed;
 @property (nonatomic, assign) double distancePerStep;
 
+//@property (nonatomic, weak) id<AGMMultiPointMockerDelegate> delegate;
+
 @end
 
 
 @implementation AGMMultiPointMocker
 
 #pragma mark - Life Cycle
+
++ (instancetype)sharedInstance {
+    static dispatch_once_t once;
+    static AGMMultiPointMocker *instance;
+    dispatch_once(&once, ^{
+        instance = [[AGMMultiPointMocker alloc] init];
+    });
+    return instance;
+}
 
 - (instancetype)init {
     if (self = [super init]) {
@@ -43,7 +55,7 @@
     _timeInverval = 0.2f;
 
     self.lock = [[NSRecursiveLock alloc] init];
-    self.simulateSpeed = 80.0;
+    self.simulateSpeed = 60.0;
 }
 
 #pragma mark - Interface
@@ -167,17 +179,20 @@
 }
 
 - (void)invokeDelegateWithCoordinate:(CLLocationCoordinate2D)coordinate course:(CLLocationDirection)course {
-    if (self.delegate) {
-        CLLocation *newLocation = [[CLLocation alloc] initWithCoordinate:coordinate
-                                                                altitude:30.f
-                                                      horizontalAccuracy:5
-                                                        verticalAccuracy:10.f
-                                                                  course:course
-                                                                   speed:self.speed
-                                                               timestamp:[NSDate date]];
-
-        [self.delegate gpsEmulatorUpdateLocation:newLocation];
-    }
+    CLLocation *newLocation = [[CLLocation alloc] initWithCoordinate:coordinate
+                                                            altitude:30.f
+                                                  horizontalAccuracy:5
+                                                    verticalAccuracy:10.f
+                                                              course:course
+                                                               speed:self.speed
+                                                           timestamp:[NSDate date]];
+    //默认定位回调，派发到主线程
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[AGMSinglePointMocker sharedInstance] startMockPoint:newLocation];
+//        if (self.delegate) {
+//            [self.delegate gpsEmulatorUpdateLocation:newLocation];
+//        }
+    });
 }
 
 - (int)getRandomNumber:(int)from to:(int)to {

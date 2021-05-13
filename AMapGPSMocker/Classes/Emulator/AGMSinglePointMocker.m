@@ -21,10 +21,10 @@
 @implementation AGMSinglePointMocker
 
 + (void)load {
-    [[AGMSinglePointMocker shareInstance] swizzleCLLocationMangagerDelegate];
+    [[AGMSinglePointMocker sharedInstance] swizzleCLLocationMangagerDelegate];
 }
 
-+ (AGMSinglePointMocker *)shareInstance{
++ (instancetype)sharedInstance{
     static dispatch_once_t once;
     static AGMSinglePointMocker *instance;
     dispatch_once(&once, ^{

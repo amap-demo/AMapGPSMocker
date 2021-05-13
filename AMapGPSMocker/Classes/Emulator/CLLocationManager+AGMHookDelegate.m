@@ -12,8 +12,8 @@
 
 - (void)agm_swizzleLocationDelegate:(id)delegate {
     if (delegate) {
-        [self agm_swizzleLocationDelegate:[AGMSinglePointMocker shareInstance]];
-        [[AGMSinglePointMocker shareInstance] addLocationBinder:self delegate:delegate];
+        [self agm_swizzleLocationDelegate:[AGMSinglePointMocker sharedInstance]];
+        [[AGMSinglePointMocker sharedInstance] addLocationBinder:self delegate:delegate];
         
         Protocol *proto = objc_getProtocol("CLLocationManagerDelegate");
         unsigned int count;
@@ -22,7 +22,7 @@
         {
             SEL sel = methods[i].name;
             if ([delegate respondsToSelector:sel]) {
-                if (![[AGMSinglePointMocker shareInstance] respondsToSelector:sel]) {
+                if (![[AGMSinglePointMocker sharedInstance] respondsToSelector:sel]) {
                     NSAssert(NO, @"Delegate : %@ not implementation SEL : %@",delegate,NSStringFromSelector(sel));
 
                 }
