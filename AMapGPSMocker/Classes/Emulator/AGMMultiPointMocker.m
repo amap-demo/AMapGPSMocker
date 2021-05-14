@@ -55,16 +55,16 @@
     _timeInverval = 0.2f;
 
     self.lock = [[NSRecursiveLock alloc] init];
-    self.simulateSpeed = 60.0;
+    self.speed = 60.0;
 }
 
 #pragma mark - Interface
 
-- (void)setSimulateSpeed:(double)simulateSpeed {
-    _simulateSpeed = MAX(0, MIN(200, simulateSpeed));
+- (void)setSpeed:(double)simulateSpeed {
+    _speed = MAX(0, MIN(200, simulateSpeed));
 
     [self.lock lock];
-    self.speed = _simulateSpeed / 3.6f;
+    self.speed = _speed / 3.6f;
     self.distancePerStep = self.timeInverval * self.speed;
     [self.lock unlock];
 }
