@@ -16,7 +16,6 @@
 @property (nonatomic, assign) double timeInverval;
 
 @property (nonatomic, strong) NSRecursiveLock *lock;
-@property (nonatomic, assign) double speed;
 @property (nonatomic, assign) double distancePerStep;
 
 //@property (nonatomic, weak) id<AGMMultiPointMockerDelegate> delegate;
@@ -61,11 +60,11 @@
 #pragma mark - Interface
 
 - (void)setSpeed:(double)simulateSpeed {
-    _speed = MAX(0, MIN(200, simulateSpeed));
+    double toSetSpeed = MAX(0, MIN(200, simulateSpeed));
 
     [self.lock lock];
-    self.speed = _speed / 3.6f;
-    self.distancePerStep = self.timeInverval * self.speed;
+    _speed = toSetSpeed / 3.6f;
+    self.distancePerStep = self.timeInverval * _speed;
     [self.lock unlock];
 }
 
