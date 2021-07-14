@@ -56,6 +56,15 @@
     method_exchangeImplementations(oriSel, swizSel);
 }
 
+/// 开始mock经纬度的坐标点（经纬度需要是中国国测局地理坐标（GCJ-02）<火星坐标>）
+/// @param coord 经纬度
+- (void)startMockCoord:(CLLocationCoordinate2D)coord {
+    if (CLLocationCoordinate2DIsValid(coord)) {
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:coord.latitude longitude:coord.longitude];
+        [self startMockPoint:location];
+    }
+}
+
 - (void)startMockPoint:(CLLocation*)location{
     _isMocking = YES;
     self.pointLocation = location;
