@@ -6,10 +6,16 @@
 //
 
 #import "AGMPositionEditViewController.h"
-#import <MAMapKit/MAMapKit.h>
 #import "AGMSinglePointMocker.h"
 #import "AGMCoordConvertUtil.h"
 #import "AGMCaclUtil.h"
+#if __has_include(<AMapNaviKit/MAMapKit.h>)
+#import <AMapNaviKit/MAMapKit.h>
+#elif __has_include(<MAMapKit/MAMapKit.h>)
+#import <MAMapKit/MAMapKit.h>
+#elif __has_include("MAMapKit.h")
+#import "MAMapKit.h"
+#endif
 
 @interface AGMPositionEditViewController ()<UITextFieldDelegate,MAMapViewDelegate>
 

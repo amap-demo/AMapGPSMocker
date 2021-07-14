@@ -44,6 +44,7 @@
 
 
 - (void)addLocationBinder:(id)binder delegate:(id)delegate{
+    //这里传入的binder实际为CLLocationManager的实例,delegate是该实例的代理。两者共同放入到同一个mapTable中，都使用binder的地址作为key的前缀
     NSString *binderKey = [NSString stringWithFormat:@"%p_binder",binder];
     NSString *delegateKey = [NSString stringWithFormat:@"%p_delegate",binder];
     [_locationMonitor setObject:binder forKey:binderKey];
@@ -83,7 +84,7 @@
 
 - (void)dispatchLocationsToAll:(NSArray*)locations{
     for (NSString *key in _locationMonitor.keyEnumerator) {
-        if ([key hasSuffix:@"_binder"]) {
+        if ([key hasSuffix:@"_binder"]) {//通过binder前缀，找到所有的LocaitonManager实例
             NSString *binderKey = key;
             CLLocationManager *binderManager = [_locationMonitor objectForKey:binderKey];
             [self dispatchLocationUpdate:binderManager locations:locations];

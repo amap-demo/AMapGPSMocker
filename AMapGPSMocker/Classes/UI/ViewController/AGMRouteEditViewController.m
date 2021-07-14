@@ -6,10 +6,16 @@
 //
 
 #import "AGMRouteEditViewController.h"
-#import <MAMapKit/MAMapKit.h>
 #import "AGMCaclUtil.h"
 #import "AGMMultiPointMocker.h"
 #import "AGMCoordConvertUtil.h"
+#if __has_include(<AMapNaviKit/MAMapKit.h>)
+#import <AMapNaviKit/MAMapKit.h>
+#elif __has_include(<MAMapKit/MAMapKit.h>)
+#import <MAMapKit/MAMapKit.h>
+#elif __has_include("MAMapKit.h")
+#import "MAMapKit.h"
+#endif
 
 @interface AGMRouteEditViewController ()<MAMapViewDelegate,UITextViewDelegate>
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
