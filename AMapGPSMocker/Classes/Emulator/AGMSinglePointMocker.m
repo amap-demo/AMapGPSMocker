@@ -71,17 +71,13 @@
     if (self.simTimer) {
         [self pointMock];
     } else {
-        self.simTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(pointMock) userInfo:nil repeats:YES];
+        self.simTimer = [NSTimer scheduledTimerWithTimeInterval:0.2 target:self selector:@selector(pointMock) userInfo:nil repeats:YES];
         [self.simTimer fire];
     }
 }
 
 - (void)pointMock {
-    CLLocation *mockLocation = [[CLLocation alloc] initWithCoordinate:CLLocationCoordinate2DMake(self.pointLocation.coordinate.latitude, self.pointLocation.coordinate.longitude)
-                                                             altitude:self.pointLocation.altitude
-                                                   horizontalAccuracy:self.pointLocation.horizontalAccuracy
-                                                     verticalAccuracy:self.pointLocation.verticalAccuracy
-                                                            timestamp:[NSDate date]];
+    CLLocation *mockLocation = [self.pointLocation copy];
     [self dispatchLocationsToAll:@[mockLocation]];
 }
 
