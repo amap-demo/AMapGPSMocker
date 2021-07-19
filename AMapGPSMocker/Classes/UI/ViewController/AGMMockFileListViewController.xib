@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AGMMockFileListViewController">
+            <connections>
+                <outlet property="fileListTableView" destination="OXY-7E-SRm" id="f7o-YY-ZEt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHU-cX-zBf" userLabel="CloseBtn">
+                    <rect key="frame" x="8" y="44" width="35" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="FC3-u6-EMh"/>
+                        <constraint firstAttribute="width" constant="35" id="tOB-Rp-YFI"/>
+                        <constraint firstAttribute="width" secondItem="GHU-cX-zBf" secondAttribute="height" multiplier="1:1" id="yMC-8y-TUQ"/>
+                    </constraints>
+                    <state key="normal" image="xmark.circle.fill" catalog="system"/>
+                    <connections>
+                        <action selector="closeBtnClicked:" destination="-1" eventType="touchUpInside" id="lGB-Hc-Ytj"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="OXY-7E-SRm">
+                    <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEF-vG-KYM">
+                    <rect key="frame" x="356" y="44" width="50" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="HG7-r4-Xkt"/>
+                        <constraint firstAttribute="height" constant="44" id="MNu-rO-qrj"/>
+                    </constraints>
+                    <state key="normal" title="确认"/>
+                    <connections>
+                        <action selector="ensureBtnClicked:" destination="-1" eventType="touchUpInside" id="pVp-T3-JUr"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="GHU-cX-zBf" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="8" id="0Lx-OC-qgU"/>
+                <constraint firstItem="GHU-cX-zBf" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="7XL-hP-xzV"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="bottom" secondItem="OXY-7E-SRm" secondAttribute="bottom" id="Mmr-6H-IkO"/>
+                <constraint firstItem="HEF-vG-KYM" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" id="R52-Tz-CgR"/>
+                <constraint firstItem="GHU-cX-zBf" firstAttribute="width" secondItem="GHU-cX-zBf" secondAttribute="height" multiplier="1:1" id="cuK-5i-wdW"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="OXY-7E-SRm" secondAttribute="trailing" id="i9F-nn-s5E"/>
+                <constraint firstItem="OXY-7E-SRm" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="nyG-Da-Hg1"/>
+                <constraint firstItem="OXY-7E-SRm" firstAttribute="top" secondItem="Q5M-cg-NOt" secondAttribute="top" constant="44" id="oSM-2h-qvr"/>
+                <constraint firstItem="Q5M-cg-NOt" firstAttribute="trailing" secondItem="HEF-vG-KYM" secondAttribute="trailing" constant="8" id="qZE-ZP-D3v"/>
+            </constraints>
+            <point key="canvasLocation" x="140.57971014492756" y="117.85714285714285"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
