@@ -9,6 +9,8 @@
 #import "AGMCaclUtil.h"
 #import "AGMMultiPointMocker.h"
 #import "AGMCoordConvertUtil.h"
+#import "AGMMockFileListViewController.h"
+
 #if __has_include(<AMapNaviKit/MAMapKit.h>)
 #import <AMapNaviKit/MAMapKit.h>
 #elif __has_include(<MAMapKit/MAMapKit.h>)
@@ -17,7 +19,7 @@
 #import "MAMapKit.h"
 #endif
 
-@interface AGMRouteEditViewController ()<MAMapViewDelegate,UITextViewDelegate>
+@interface AGMRouteEditViewController ()<MAMapViewDelegate,UITextViewDelegate,AGMMockFileListViewControllerDelegate>
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
 @property (nonatomic,copy) NSString *defaultTextStr;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextView *routePointsTextView;
@@ -98,7 +100,54 @@
 /// 从文件导入
 /// @param sender sender
 - (IBAction)importFromFile:(id)sender {
+    NSArray<NSString *> *txtPaths = [NSBundle pathsForResourcesOfType:@"txt" inDirectory:[NSBundle mainBundle].bundlePath];
+    NSArray<NSString *> *gpxPaths = [NSBundle pathsForResourcesOfType:@"gpx" inDirectory:[NSBundle mainBundle].bundlePath];
+    NSMutableArray<NSString *> *fileNames = [NSMutableArray arrayWithCapacity:txtPaths.count + gpxPaths.count];
+    [fileNames addObjectsFromArray:txtPaths];
+    [fileNames addObjectsFromArray:gpxPaths];
+    AGMMockFileListViewController *fileListVC = [[AGMMockFileListViewController alloc] initWithNibName:NSStringFromClass([AGMMockFileListViewController class])
+                                                                                                bundle:nil];
+    fileListVC.delegate = self;
+    fileListVC.filePath = fileNames;
+    [self presentViewController:fileListVC animated:YES completion:nil];
 }
+
+//MARK:AGMMockFileListViewControllerDelegate
+
+- (void)selectFileWithPath:(NSString *)filePath {
+//    txt文件读取
+    if ([filePath.pathExtension isEqualToString:@"txt"]) {
+        NSString *coordStr = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"coordStr:%@",coordStr);
+        NSArray<NSString *> *coordStrArray = [coordStr componentsSeparatedByString:@";"];
+        if (_routeCoords != NULL && _coordCount > 0) {
+            free(_routeCoords);
+        }
+        _routeCoords = malloc(sizeof(CLLocationCoordinate2D) * coordStrArray.count);
+        _coordCount = coordStrArray.count;
+        for (NSUInteger index = 0; index < coordStrArray.count; index ++) {
+            _routeCoords[index] = [self coordinateFromString:coordStrArray[index]];
+        }
+        //UI展示
+        [self updateRoutePolyline];
+        [self.mapView showOverlays:@[self.routePolyline] animated:YES];
+        [self writePointsToTextView];
+    } else if (filePath.pathExtension isEqualToString:@"gpx") {
+//        TODO: gpx文件读写
+    }
+}
+
+- (CLLocationCoordinate2D)coordinateFromString:(NSString *)pointString {
+    CLLocationCoordinate2D coor = kCLLocationCoordinate2DInvalid;
+
+    NSArray<NSString *> *positionArr = [pointString componentsSeparatedByString:@","];
+    if (positionArr.count == 2) {
+        coor = CLLocationCoordinate2DMake([positionArr.lastObject doubleValue], [positionArr.firstObject doubleValue]);
+    }
+
+    return coor;
+}
+
 
 
 /// 保存到文件
