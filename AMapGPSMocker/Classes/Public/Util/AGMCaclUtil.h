@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
                                 withRate:(float)rate;
 
 
-/// 标准话度数值（将度数调整到0-360度之间）
+/// 标准化度数值（将度数调整到0-360度之间）
 /// @param degree 原始度数
 + (double)normalizeDegree:(double)degree;
 
