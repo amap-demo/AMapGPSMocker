@@ -19,6 +19,8 @@
 #import "MAMapKit.h"
 #endif
 
+NSString * const GPSFileDiectionary = @"/AGMMockGPS";
+
 @interface AGMRouteEditViewController ()<MAMapViewDelegate,UITextViewDelegate,AGMMockFileListViewControllerDelegate>
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
 @property (nonatomic,copy) NSString *defaultTextStr;
@@ -100,11 +102,26 @@
 /// 从文件导入
 /// @param sender sender
 - (IBAction)importFromFile:(id)sender {
+    NSMutableArray<NSString *> *fileNames = [NSMutableArray array];
+    //从bundle中加载文件
     NSArray<NSString *> *txtPaths = [NSBundle pathsForResourcesOfType:@"txt" inDirectory:[NSBundle mainBundle].bundlePath];
-    NSArray<NSString *> *gpxPaths = [NSBundle pathsForResourcesOfType:@"gpx" inDirectory:[NSBundle mainBundle].bundlePath];
-    NSMutableArray<NSString *> *fileNames = [NSMutableArray arrayWithCapacity:txtPaths.count + gpxPaths.count];
     [fileNames addObjectsFromArray:txtPaths];
+    NSArray<NSString *> *gpxPaths = [NSBundle pathsForResourcesOfType:@"gpx" inDirectory:[NSBundle mainBundle].bundlePath];
     [fileNames addObjectsFromArray:gpxPaths];
+    //从文件目录中加载
+    NSArray<NSString *> *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+    NSString *document = pathArray.firstObject;
+    NSString *directory = [document stringByAppendingString:GPSFileDiectionary];
+    txtPaths = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:directory error:nil];
+    if (txtPaths.count > 0) {
+        for (NSString *fileName in txtPaths) {
+            if ([fileName.pathExtension isEqualToString:@"txt"]
+                || [fileName.pathExtension isEqualToString:@"gpx"]) {
+                NSString *fullPath = [NSString stringWithFormat:@"%@/%@",directory,fileName];
+                [fileNames addObject:fullPath];
+            }
+        }
+    }
     AGMMockFileListViewController *fileListVC = [[AGMMockFileListViewController alloc] initWithNibName:NSStringFromClass([AGMMockFileListViewController class])
                                                                                                 bundle:nil];
     fileListVC.delegate = self;
@@ -126,33 +143,52 @@
         _routeCoords = malloc(sizeof(CLLocationCoordinate2D) * coordStrArray.count);
         _coordCount = coordStrArray.count;
         for (NSUInteger index = 0; index < coordStrArray.count; index ++) {
-            _routeCoords[index] = [self coordinateFromString:coordStrArray[index]];
+            _routeCoords[index] = [AGMCaclUtil coordinateFromString:coordStrArray[index]];
         }
         //UI展示
         [self updateRoutePolyline];
         [self.mapView showOverlays:@[self.routePolyline] animated:YES];
         [self writePointsToTextView];
-    } else if (filePath.pathExtension isEqualToString:@"gpx") {
+    } else if ([filePath.pathExtension isEqualToString:@"gpx"]) {
 //        TODO: gpx文件读写
     }
 }
 
-- (CLLocationCoordinate2D)coordinateFromString:(NSString *)pointString {
-    CLLocationCoordinate2D coor = kCLLocationCoordinate2DInvalid;
-
-    NSArray<NSString *> *positionArr = [pointString componentsSeparatedByString:@","];
-    if (positionArr.count == 2) {
-        coor = CLLocationCoordinate2DMake([positionArr.lastObject doubleValue], [positionArr.firstObject doubleValue]);
-    }
-
-    return coor;
-}
-
-
-
 /// 保存到文件
 /// @param sender sender
 - (IBAction)saveToFile:(id)sender {
+    __weak typeof(self) weakSelf = self;
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        NSMutableString *mStr = [NSMutableString new];
+        for (NSUInteger index = 0; index < weakSelf.coordCount; index++) {
+            NSString *coordStr = [AGMCaclUtil stringFromCoord:weakSelf.routeCoords[index]];
+            if (coordStr.length > 0) {
+                [mStr appendString:[NSString stringWithFormat:@"%@;",coordStr]];
+            }
+        }
+        if (mStr.length > 2) {//有点，则把最后一个；去掉
+            [mStr deleteCharactersInRange:NSMakeRange(mStr.length-1, 1)];
+        }
+        NSArray<NSString *> *pathArray = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
+        NSString *document = pathArray.firstObject;
+        NSString *directory = [document stringByAppendingString:GPSFileDiectionary];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:directory isDirectory:nil] == NO) {//不存在目录，则创建
+            [[NSFileManager defaultManager] createDirectoryAtPath:directory withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        dateFormatter.dateFormat = @"yyyy-MM-dd-HHmmss";
+        dateFormatter.timeZone = [NSTimeZone localTimeZone];
+        NSString *fileName = [dateFormatter stringFromDate:[NSDate new]];
+        NSData *data = [mStr dataUsingEncoding:NSUTF8StringEncoding];
+        BOOL result = [[NSFileManager defaultManager] createFileAtPath:[NSString stringWithFormat:@"%@/%@.txt",directory,fileName]
+                                                              contents:data
+                                                            attributes:nil];
+        if (result) {
+            NSLog(@"写入GPS点成功！");
+        } else {
+            NSLog(@"写入GPS点失败！");
+        }
+    });
 }
 
 - (IBAction)closeBtnClicked:(id)sender {
