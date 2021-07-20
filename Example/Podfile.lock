@@ -3,7 +3,7 @@ PODS:
     - AMapFoundation (~> 1.6.6)
   - AMapFoundation (1.6.6)
   - AMapGPSMocker (0.1.0):
-    - AMap3DMap (~> 7.0)
+    - AMap3DMap
 
 DEPENDENCIES:
   - AMap3DMap (~> 7.9.0)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AMap3DMap: 4ff760f011b89aec85edd8b5fcf90d384aae1202
   AMapFoundation: 2d012d9aaa7a5c0d387ddb1a8c5f03e1d6df29b8
-  AMapGPSMocker: d35776018127744ca30ad3681fa935b612357f10
+  AMapGPSMocker: 26d9b803b91040d652b24326ba424209b8dfd318
 
 PODFILE CHECKSUM: 311c9a39cd329ba993741c8431ec28107ecc9ed1
 

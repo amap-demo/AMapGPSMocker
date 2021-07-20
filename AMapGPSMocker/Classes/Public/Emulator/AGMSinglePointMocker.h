@@ -16,12 +16,12 @@
 + (instancetype)sharedInstance;
 
 
-/// 开始mock经纬度的坐标点（经纬度需要是中国国测局地理坐标（GCJ-02）<火星坐标>）
-/// @param coord 经纬度
+/// 开始mock经纬度的坐标点
+/// @param coord 经纬度 （注意：经纬度需要是WGS84坐标系，因为CLLocationManager回调的都是WGS84坐标）
 - (void)startMockCoord:(CLLocationCoordinate2D)coord;
 
 /// 开始mock坐标点
-/// @param location 坐标点，注意入参中的经纬度需要是中国国测局地理坐标（GCJ-02）<火星坐标>
+/// @param location 坐标点（注意：经纬度需要是WGS84坐标系，因为CLLocationManager回调的都是WGS84坐标）
 - (void)startMockPoint:(CLLocation*)location;
 
 - (void)stopMockPoint;

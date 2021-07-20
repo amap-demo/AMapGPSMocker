@@ -34,7 +34,7 @@ TODO: Add long description of the pod here.
   
   s.resources = ['AMapGPSMocker/Classes/**/*.{xib,storyboard,xcassets}','AMapGPSMocker/Assets/**/*.{xib,storyboard,xcassets,png}']
   s.public_header_files = 'Pod/Classes/Public/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
+  s.frameworks = 'UIKit', 'MapKit'
 #标记是否依赖导航SDK
   $useNaviSdk = ENV['use_navi_sdk']
 #标记内部调试依赖使用
