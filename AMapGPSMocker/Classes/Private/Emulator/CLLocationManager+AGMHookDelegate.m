@@ -6,6 +6,7 @@
 
 #import "CLLocationManager+AGMHookDelegate.h"
 #import "AGMSinglePointMocker.h"
+#import "AGMSinglePointMocker+Private.h"
 #import <objc/runtime.h>
 
 @implementation CLLocationManager (AGMHookDelegate)

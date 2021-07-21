@@ -24,9 +24,7 @@
 /// @param location 坐标点（注意：经纬度需要是WGS84坐标系，因为CLLocationManager回调的都是WGS84坐标）
 - (void)startMockPoint:(CLLocation*)location;
 
+/// 停止mock坐标点
 - (void)stopMockPoint;
-
-//内部私有方法，外部用户无需调用该接口
-- (void)addLocationBinder:(id)binder delegate:(id)delegate;
 
 @end
