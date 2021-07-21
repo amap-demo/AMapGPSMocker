@@ -6,13 +6,13 @@
 //
 
 #import "AGMShowCoordPinAnnotation.h"
-#import "AGMCaclUtil.h"
+#import "AGMCoordConvertUtil.h"
 
 @implementation AGMShowCoordPinAnnotation
 
 - (void)setCoordinate:(CLLocationCoordinate2D)coordinate {
     _coordinate = coordinate;
-    self.title = [AGMCaclUtil stringFromCoord:coordinate];
+    self.title = [AGMCoordConvertUtil stringFromCoord:coordinate];
 }
 
 @end

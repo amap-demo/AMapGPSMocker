@@ -43,9 +43,9 @@
     if (locations.count > 0) {
 //        locationManager回调的经纬度是WGS84坐标，但是高德地图MAMapView和苹果地图MKMapView中的坐标系是高德坐标，即GCJ02坐标；
         CLLocationCoordinate2D coord = locations.firstObject.coordinate;
-        NSLog(@"locationManager update location:%@",[AGMCaclUtil stringFromCoord:coord]);
+        NSLog(@"locationManager update location:%@",[AGMCoordConvertUtil stringFromCoord:coord]);
         CLLocationCoordinate2D coord02 = [AGMCoordConvertUtil gcj02FromWgs84:coord];
-        NSLog(@"locationManager coord02 get location:%@",[AGMCaclUtil stringFromCoord:coord02]);
+        NSLog(@"locationManager coord02 get location:%@",[AGMCoordConvertUtil stringFromCoord:coord02]);
     }
 }
 
@@ -53,7 +53,7 @@
 
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
     if (updatingLocation) {
-        NSLog(@"MAMapView update user location:%@",[AGMCaclUtil stringFromCoord:userLocation.coordinate]);
+        NSLog(@"MAMapView update user location:%@",[AGMCoordConvertUtil stringFromCoord:userLocation.coordinate]);
     }
 }
 

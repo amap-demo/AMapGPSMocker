@@ -79,7 +79,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
     NSMutableString *pointsStr = [[NSMutableString alloc] init];
     for (NSUInteger index = 0 ; index < _coordCount; index ++) {
         CLLocationCoordinate2D point = _routeCoords[index];
-        NSString *pointStr = [AGMCaclUtil stringFromCoord:point];
+        NSString *pointStr = [AGMCoordConvertUtil stringFromCoord:point];
         [pointsStr appendFormat:@"%@;",pointStr];
     }
     if (pointsStr.length > 2) {//有点，则把最后一个；去掉
@@ -143,7 +143,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         _routeCoords = malloc(sizeof(CLLocationCoordinate2D) * coordStrArray.count);
         _coordCount = coordStrArray.count;
         for (NSUInteger index = 0; index < coordStrArray.count; index ++) {
-            _routeCoords[index] = [AGMCaclUtil coordinateFromString:coordStrArray[index]];
+            _routeCoords[index] = [AGMCoordConvertUtil coordinateFromString:coordStrArray[index]];
         }
         //UI展示
         [self updateRoutePolyline];
@@ -161,7 +161,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
     dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
         NSMutableString *mStr = [NSMutableString new];
         for (NSUInteger index = 0; index < weakSelf.coordCount; index++) {
-            NSString *coordStr = [AGMCaclUtil stringFromCoord:weakSelf.routeCoords[index]];
+            NSString *coordStr = [AGMCoordConvertUtil stringFromCoord:weakSelf.routeCoords[index]];
             if (coordStr.length > 0) {
                 [mStr appendString:[NSString stringWithFormat:@"%@;",coordStr]];
             }
@@ -226,7 +226,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         [self.mapView removeAnnotation:self.currentPointAnnotation];
     }
     self.currentPointAnnotation = [[MAPointAnnotation alloc] init];
-    _currentPointAnnotation.title = [AGMCaclUtil stringFromCoord:coord];
+    _currentPointAnnotation.title = [AGMCoordConvertUtil stringFromCoord:coord];
     self.currentPointCoord = coord;
     _currentPointAnnotation.lockedToScreen = YES;
     //将经纬度转换为指定view坐标系的坐标
@@ -244,7 +244,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
             [self resetRouteCoordsCache];
         }
         for (NSString *point in points) {
-            CLLocationCoordinate2D coord = [AGMCaclUtil coordinateFromString:point];
+            CLLocationCoordinate2D coord = [AGMCoordConvertUtil coordinateFromString:point];
             [self addRouteCoord:coord];
         }
         [self updateRoutePolyline];
@@ -281,7 +281,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         CGPoint lockedScreenPoint = self.currentPointAnnotation.lockedScreenPoint;
         CLLocationCoordinate2D currentCoord = [mapView convertPoint:lockedScreenPoint toCoordinateFromView:mapView];
         self.currentPointCoord = currentCoord;
-        NSString *str = [AGMCaclUtil stringFromCoord:currentCoord];
+        NSString *str = [AGMCoordConvertUtil stringFromCoord:currentCoord];
         self.currentPointAnnotation.title = str;
     }
 }

@@ -27,6 +27,25 @@
 #define jzEE 0.00669342162296594323
 
 @implementation AGMCoordConvertUtil
+
++ (NSString *)stringFromCoord:(CLLocationCoordinate2D)coord {
+    if (CLLocationCoordinate2DIsValid(coord) == NO) {
+        return @"";
+    }
+    return [NSString stringWithFormat:@"%.6f,%.6f", coord.longitude, coord.latitude];
+}
+
+///把 x,y形式的字符串，转换为经纬度，如无效则返回kCLLocationCoordinate2DInvalid
++ (CLLocationCoordinate2D)coordinateFromString:(NSString *)coordString {
+    CLLocationCoordinate2D coor = kCLLocationCoordinate2DInvalid;
+
+    NSArray<NSString *> *positionArr = [coordString componentsSeparatedByString:@","];
+    if (positionArr.count == 2) {
+        coor = CLLocationCoordinate2DMake([positionArr.lastObject doubleValue], [positionArr.firstObject doubleValue]);
+    }
+    return coor;
+}
+
 + (double)transformLat:(double)x bdLon:(double)y
 {
     double ret = LAT_OFFSET_0(x, y);

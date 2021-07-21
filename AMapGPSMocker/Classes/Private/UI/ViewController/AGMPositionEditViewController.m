@@ -34,7 +34,7 @@
     self.inputTextField.delegate = self;
     BOOL isMocking = [AGMSinglePointMocker sharedInstance].isMocking;
     if (isMocking) {
-        self.inputTextField.text = [AGMCaclUtil stringFromCoord:self.mockCoord];
+        self.inputTextField.text = [AGMCoordConvertUtil stringFromCoord:self.mockCoord];
         [self mockCoordGCJ02:self.mockCoord];
     }
     self.mockSwitch.on = isMocking;
@@ -90,7 +90,7 @@
         NSLog(@"请输入有效的经纬度");
         return;
     }
-    _mockCoord = [AGMCaclUtil coordinateFromString:coordStr];
+    _mockCoord = [AGMCoordConvertUtil coordinateFromString:coordStr];
     if (self.mockSwitch.on) {//如果打开，则编辑完成，即更新mock的点
         [self mockCoordGCJ02:_mockCoord];
     }
@@ -129,7 +129,7 @@ didChangeDragState:(MKAnnotationViewDragState)newState
         if (newState == MKAnnotationViewDragStateEnding) {
             CLLocationCoordinate2D coord = [mapView convertPoint:view.center toCoordinateFromView:mapView];
             self.pinAnnotation.coordinate = coord;
-            self.inputTextField.text = [AGMCaclUtil stringFromCoord:coord];
+            self.inputTextField.text = [AGMCoordConvertUtil stringFromCoord:coord];
             self.mockCoord = coord;
             if (self.mockSwitch.on) {
                 [self mockCoordGCJ02:coord];
