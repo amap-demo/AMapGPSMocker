@@ -364,6 +364,7 @@
 				"${PODS_ROOT}/../../AMapGPSMocker/Classes/Private/UI/ViewController/AGMPositionEditViewController.xib",
 				"${PODS_ROOT}/../../AMapGPSMocker/Classes/Private/UI/ViewController/AGMRouteEditViewController.xib",
 				"${PODS_ROOT}/../../AMapGPSMocker/Assets/center_btn.png",
+				"${PODS_ROOT}/../../AMapGPSMocker/Assets/redPin@2x.png",
 				"${PODS_ROOT}/../../AMapGPSMocker/Assets/wheel@2x.png",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -374,6 +375,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AGMPositionEditViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AGMRouteEditViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/center_btn.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/redPin@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/wheel@2x.png",
 			);
 			runOnlyForDeploymentPostprocessing = 0;

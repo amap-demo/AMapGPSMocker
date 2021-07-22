@@ -70,8 +70,8 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="长按大头针拖动以选择要模拟的坐标！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83z-Zx-vtR">
-                                    <rect key="frame" x="8" y="47.5" width="226" height="16"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拖动地图以选择要模拟的坐标！" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83z-Zx-vtR">
+                                    <rect key="frame" x="8" y="47.5" width="186" height="16"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                     <color key="textColor" systemColor="systemOrangeColor"/>
                                     <nil key="highlightedColor"/>
@@ -91,6 +91,13 @@
                             <rect key="frame" x="0.0" y="215" width="374" height="583"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="y1S-OG-Z7T">
+                            <rect key="frame" x="165" y="470.5" width="44" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="72" id="UGT-WG-i67"/>
+                                <constraint firstAttribute="width" constant="44" id="zck-n3-pn1"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-WM-7uH" userLabel="CloseBtn">
                             <rect key="frame" x="312" y="21" width="35" height="35"/>
                             <constraints>
@@ -109,9 +116,11 @@
                         <constraint firstItem="S2r-gu-fs0" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="vE2-Al-TnP" secondAttribute="trailing" id="2dy-jx-she"/>
                         <constraint firstItem="ZBr-dl-yJ8" firstAttribute="centerX" secondItem="kVo-nQ-rFu" secondAttribute="centerX" id="6AD-Ej-6z0"/>
                         <constraint firstItem="a7R-WS-BZS" firstAttribute="leading" secondItem="kVo-nQ-rFu" secondAttribute="leading" constant="20" symbolic="YES" id="Chx-dO-USz"/>
+                        <constraint firstItem="y1S-OG-Z7T" firstAttribute="centerY" secondItem="vD0-gf-WQq" secondAttribute="centerY" id="NTO-bC-tdd"/>
                         <constraint firstItem="ZBr-dl-yJ8" firstAttribute="top" secondItem="kVo-nQ-rFu" secondAttribute="top" constant="28" id="QeM-lp-QLI"/>
                         <constraint firstItem="vD0-gf-WQq" firstAttribute="top" secondItem="a7R-WS-BZS" secondAttribute="bottom" id="WJp-TF-PET"/>
                         <constraint firstItem="vLg-WM-7uH" firstAttribute="centerY" secondItem="ZBr-dl-yJ8" secondAttribute="centerY" id="Xpu-V1-Am3"/>
+                        <constraint firstItem="y1S-OG-Z7T" firstAttribute="centerX" secondItem="kVo-nQ-rFu" secondAttribute="centerX" id="Yq8-RW-oT5"/>
                         <constraint firstAttribute="trailing" secondItem="vD0-gf-WQq" secondAttribute="trailing" id="ar4-pE-hXl"/>
                         <constraint firstItem="jk8-4M-IsG" firstAttribute="bottom" secondItem="a7R-WS-BZS" secondAttribute="top" constant="-20" id="g5X-xT-9nU"/>
                         <constraint firstAttribute="trailing" secondItem="vLg-WM-7uH" secondAttribute="trailing" constant="27" id="hNE-dl-WyA"/>
@@ -137,6 +146,7 @@
         </view>
     </objects>
     <resources>
+        <image name="redPin.png" width="44" height="72"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

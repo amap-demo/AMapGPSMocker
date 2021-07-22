@@ -17,11 +17,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UISwitch *mockSwitch;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextField *inputTextField;
 @property (unsafe_unretained, nonatomic) IBOutlet MKMapView *mapView;
-
 @property (nonatomic,assign) CLLocationCoordinate2D mockCoord;
-
-///大头针annotation
-@property (nonatomic, strong) AGMShowCoordPinAnnotation *pinAnnotation;
 
 @end
 
@@ -40,20 +36,8 @@
     self.mockSwitch.on = isMocking;
     
     self.mapView.delegate = self;
-    [self.mapView setRegion:MKCoordinateRegionMake(self.mockCoord, MKCoordinateSpanMake(10, 10)) animated:YES];
+    [self.mapView setRegion:MKCoordinateRegionMake(self.mockCoord, MKCoordinateSpanMake(2, 2)) animated:YES];
 }
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    if (self.pinAnnotation == nil) {
-        self.pinAnnotation = [[AGMShowCoordPinAnnotation alloc] init];
-        self.pinAnnotation.coordinate = self.mockCoord;
-        [self.view layoutIfNeeded];
-        [self.mapView addAnnotation:_pinAnnotation];
-        [self.mapView selectAnnotation:_pinAnnotation animated:NO];
-    }
-}
-
 
 /// mock点的GCJ02坐标，这里MKMapView使用坐标系和高德相同，即GCJ02坐标系，但其CLLocationManager回调的位置都是WGS84坐标系，所以需要转换
 /// @param coord 经纬度(GCJ02坐标系)
@@ -94,48 +78,18 @@
     if (self.mockSwitch.on) {//如果打开，则编辑完成，即更新mock的点
         [self mockCoordGCJ02:_mockCoord];
     }
-    self.pinAnnotation.coordinate = _mockCoord;
 }
 
 //MARK: MKMapViewDelegate
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
-    if(annotation == self.pinAnnotation) {
-        static NSString *identifier = @"lockScreenPointAnnotation";
-        MKPinAnnotationView *view = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if(!view) {
-            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        }
-        view.canShowCallout = YES;
-        view.pinTintColor = [MKPinAnnotationView redPinColor];
-        view.draggable = YES;
-        return view;
-    } else {
-        return nil;
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    CLLocationCoordinate2D centerCoord = mapView.centerCoordinate;
+    self.inputTextField.text = [AGMCoordConvertUtil stringFromCoord:centerCoord];
+    self.mockCoord = centerCoord;
+    if (self.mockSwitch.on) {
+        [self mockCoordGCJ02:centerCoord];
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    //这里确保，pinAnnotation始终被选中，其title始终可以显示
-    if (view.annotation == self.pinAnnotation) {
-        [mapView selectAnnotation:self.pinAnnotation animated:NO];
-    }
-}
-
-- (void)mapView:(MKMapView *)mapView
- annotationView:(MKAnnotationView *)view
-didChangeDragState:(MKAnnotationViewDragState)newState
-   fromOldState:(MKAnnotationViewDragState)oldState {
-    if (view.annotation == self.pinAnnotation) {
-        if (newState == MKAnnotationViewDragStateEnding) {
-            CLLocationCoordinate2D coord = [mapView convertPoint:view.center toCoordinateFromView:mapView];
-            self.pinAnnotation.coordinate = coord;
-            self.inputTextField.text = [AGMCoordConvertUtil stringFromCoord:coord];
-            self.mockCoord = coord;
-            if (self.mockSwitch.on) {
-                [self mockCoordGCJ02:coord];
-            }
-        }
-    }
-}
 
 @end
