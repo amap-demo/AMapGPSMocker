@@ -35,23 +35,4 @@ TODO: Add long description of the pod here.
   s.resources = ['AMapGPSMocker/Classes/**/*.{xib,storyboard,xcassets}','AMapGPSMocker/Assets/**/*.{xib,storyboard,xcassets,png}']
   s.public_header_files = 'Pod/Classes/Public/*.h'
   s.frameworks = 'UIKit', 'MapKit'
-#标记是否依赖导航SDK
-  $useNaviSdk = ENV['use_navi_sdk']
-#标记内部调试依赖使用
-  $internalDebug = ENV['internal_debug']
-  if $useNaviSdk
-    if $internalDebug
-      s.dependency 'AMapFoundationKit'
-      s.dependency 'AMapNaviKit'
-    else
-      s.dependency 'AMapNavi'
-    end
-  else
-    if $internalDebug
-      s.dependency 'AMapFoundationKit'
-      s.dependency 'MAMapKit'
-    else
-      s.dependency 'AMap3DMap'
-    end
-  end
 end
