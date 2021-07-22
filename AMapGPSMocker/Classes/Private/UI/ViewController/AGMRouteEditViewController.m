@@ -27,10 +27,9 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
 @property (nonatomic,assign) NSUInteger coordCount;
 
 //当前编辑的点
-@property (nonatomic,assign) CLLocationCoordinate2D currentPointCoord;
-@property (nonatomic,strong) AGMShowCoordPinAnnotation *currentPointAnnotation;
-
+@property (nonatomic,assign) CLLocationCoordinate2D currentCoord;
 @property (nonatomic,strong) MKPolyline *routePolyline;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *currentCoordLabel;
 
 @end
 
@@ -40,13 +39,12 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
     [super viewDidLoad];
     self.defaultTextStr = @"请输入经纬度(示例:116.473,39;116.451,39.970)";
     self.routePointsTextView.delegate = self;
+    //首开广场GCJ02坐标
+    self.currentCoord = CLLocationCoordinate2DMake(39.993306,116.473004);
     [self resetRouteCoordsCache];
-    [self initMapView];
-}
-
-- (void)initMapView {
     self.mapView.delegate = self;
-//    self.mapView.zoomLevel = 16.0;
+    [self.mapView setRegion:MKCoordinateRegionMake(self.currentCoord, MKCoordinateSpanMake(2, 2)) animated:YES];
+    
 }
 
 - (void)resetRouteCoordsCache {
@@ -56,6 +54,16 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
     _routeCoords = (CLLocationCoordinate2D *)malloc(100 * sizeof(CLLocationCoordinate2D));
     _coordCount = 0;
 }
+
+- (void)setCurrentCoord:(CLLocationCoordinate2D)currentCoord {
+    if (CLLocationCoordinate2DIsValid(currentCoord)) {
+        _currentCoord = currentCoord;
+        self.currentCoordLabel.text = [AGMCoordConvertUtil stringFromCoord:currentCoord];
+    } else {
+        NSLog(@"设置当前的经纬度无效");
+    }
+}
+
 
 - (void)addRouteCoord:(CLLocationCoordinate2D)coord {
     if (CLLocationCoordinate2DIsValid(coord) == NO) {
@@ -82,7 +90,7 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
 }
 
 - (void)updateRoutePolyline {
-    if (_coordCount <= 0 || _routeCoords == NULL) {
+    if (_coordCount <= 1 || _routeCoords == NULL) {
         return;
     }
     if (self.routePolyline == nil) {
@@ -93,9 +101,26 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         self.routePolyline = [MKPolyline polylineWithCoordinates:_routeCoords count:_coordCount];
         [self.mapView addOverlay:_routePolyline level:MKOverlayLevelAboveRoads];
     }
-    [self.mapView setVisibleMapRect:self.routePolyline.boundingMapRect
-                        edgePadding:UIEdgeInsetsMake(15, 15, 15, 15)
-                           animated:YES];
+}
+
+//确认写入按钮
+- (IBAction)ensureBtnClicked:(id)sender {
+    if (CLLocationCoordinate2DIsValid(self.currentCoord) == NO) {
+        NSLog(@"当前经纬度无效");
+        return;
+    }
+    [self addRouteCoord:self.currentCoord];
+    [self updateRoutePolyline];
+    NSString *coordStr = [AGMCoordConvertUtil stringFromCoord:self.currentCoord];
+    if ([self.routePointsTextView.text isEqualToString:self.defaultTextStr]) {
+        self.routePointsTextView.text = coordStr;
+    } else {
+        if (self.routePointsTextView.text.length > 0) {
+            self.routePointsTextView.text = [self.routePointsTextView.text stringByAppendingFormat:@";%@",coordStr];
+        } else {
+            self.routePointsTextView.text = coordStr;
+        }
+    }
 }
 
 /// 从文件导入
@@ -146,6 +171,9 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         }
         //UI展示
         [self updateRoutePolyline];
+        [self.mapView setVisibleMapRect:self.routePolyline.boundingMapRect
+                            edgePadding:UIEdgeInsetsMake(10, 15, 15, 10)
+                               animated:YES];
         [self writePointsToTextView];
     } else if ([filePath.pathExtension isEqualToString:@"gpx"]) {
 //        TODO: gpx文件读写
@@ -219,17 +247,6 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
     [[AGMMultiPointMocker sharedInstance] startMockPoint];
 }
 
-- (void)resetCurrentPointWithCoord:(CLLocationCoordinate2D)coord {
-    if (self.currentPointAnnotation != nil) {
-        [self.mapView removeAnnotation:self.currentPointAnnotation];
-    }
-    self.currentPointAnnotation = [[AGMShowCoordPinAnnotation alloc] init];
-    _currentPointAnnotation.coordinate = coord;
-    self.currentPointCoord = coord;
-    [self.mapView addAnnotation:_currentPointAnnotation];
-    [self.mapView selectAnnotation:_currentPointAnnotation animated:YES];
-}
-
 //MARK: UITextViewDelegate
 - (void)textViewDidEndEditing:(UITextView *)textView {
     if (textView.text.length > 0 && [textView.text isEqualToString:self.defaultTextStr] == NO) {
@@ -247,63 +264,6 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
 }
 
 //MARK: MKMapViewDelegate
-///**
-// * @brief 长按地图，返回经纬度
-// * @param mapView 地图View
-// * @param coordinate 经纬度
-// */
-//- (void)mapView:(MAMapView *)mapView didLongPressedAtCoordinate:(CLLocationCoordinate2D)coordinate {
-//    if (self.currentPointAnnotation) {
-//        if ([AGMCaclUtil isEqualWith:self.currentPointCoord to:coordinate] == NO) {//长按点击了当前经纬度之外的点
-//            [self addRouteCoord:self.currentPointCoord];
-//            [self updateRoutePolyline];
-//            [self writePointsToTextView];
-//            [self resetCurrentPointWithCoord:coordinate];
-//        }
-//    } else {
-//        [self resetCurrentPointWithCoord:coordinate];
-//    }
-//}
-
-/**
-// * @brief 地图区域改变完成后会调用此接口，如实现此接口则不会触发回掉mapView:regionDidChangeAnimated:
-// * @param mapView 地图View
-// * @param animated 是否动画
-// * @param wasUserAction 标识是否是用户动作
-// */
-//- (void)mapView:(MAMapView *)mapView regionDidChangeAnimated:(BOOL)animated wasUserAction:(BOOL)wasUserAction {
-//    if (self.currentPointAnnotation && animated) {
-//        CGPoint lockedScreenPoint = self.currentPointAnnotation.lockedScreenPoint;
-//        CLLocationCoordinate2D currentCoord = [mapView convertPoint:lockedScreenPoint toCoordinateFromView:mapView];
-//        self.currentPointCoord = currentCoord;
-//        NSString *str = [AGMCoordConvertUtil stringFromCoord:currentCoord];
-//        self.currentPointAnnotation.title = str;
-//    }
-//}
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
-    if(annotation == self.currentPointAnnotation) {
-        static NSString *identifier = @"lockScreenPointAnnotation";
-        MKPinAnnotationView *view = (MKPinAnnotationView *)[self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if(!view) {
-            view = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-        }
-        view.animatesDrop = YES;
-        view.canShowCallout = YES;
-        view.pinTintColor = [MKPinAnnotationView redPinColor];
-        view.draggable = YES;
-        return view;
-    } else {
-        return nil;
-    }
-}
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    //这里确保，pinAnnotation始终被选中，其title始终可以显示
-    if (view.annotation == self.currentPointAnnotation) {
-        [mapView selectAnnotation:self.currentPointAnnotation animated:NO];
-    }
-}
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
     if (self.routePolyline == overlay) {
@@ -316,6 +276,11 @@ NSString * const GPSFileDiectionary = @"/AGMMockGPS";
         return render;
     }
     return nil;
+}
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    CLLocationCoordinate2D centerCoord = mapView.centerCoordinate;
+    self.currentCoord = centerCoord;
 }
 
 

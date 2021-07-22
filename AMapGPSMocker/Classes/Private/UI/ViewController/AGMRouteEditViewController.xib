@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AGMRouteEditViewController">
             <connections>
+                <outlet property="currentCoordLabel" destination="HSn-dS-siG" id="8Vt-mQ-RTp"/>
                 <outlet property="mapView" destination="LSb-VZ-BwK" id="DGl-c8-uei"/>
                 <outlet property="mockSwitch" destination="GqW-eW-uvj" id="Tkn-u9-S6F"/>
                 <outlet property="routePointsTextView" destination="GqB-DO-YQM" id="Yve-Qg-LIh"/>
@@ -60,7 +61,7 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WJa-mr-kHH" userLabel="InputBackgoundView">
-                            <rect key="frame" x="20" y="88.5" width="334" height="160"/>
+                            <rect key="frame" x="20" y="88.5" width="334" height="195"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="请输入经纬度(示例:116.473,39;116.451,39.970)" translatesAutoresizingMaskIntoConstraints="NO" id="GqB-DO-YQM">
                                     <rect key="frame" x="8" y="0.0" width="318" height="90"/>
@@ -72,16 +73,46 @@
                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="14"/>
                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 </textView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiD-qq-o7c">
-                                    <rect key="frame" x="8" y="95" width="239" height="31.5"/>
-                                    <string key="text">长按地图选点，之后拖动地图微调位置！
-再长按地图，会自动确定存储前一个点!</string>
-                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                    <color key="textColor" systemColor="systemOrangeColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jaa-Xy-u9Q" userLabel="InputBackgoundView">
+                                    <rect key="frame" x="0.0" y="90" width="334" height="75"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="大头针当前的坐标" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HSn-dS-siG" customClass="UILable">
+                                            <rect key="frame" x="8" y="8.5" width="142.5" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="34" id="k4Q-hV-Vd8"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="拖动地图以选择坐标，点击写入按钮录入。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xz4-Ox-kS0">
+                                            <rect key="frame" x="8" y="47.5" width="252" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" systemColor="systemOrangeColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7n7-PS-EnP">
+                                            <rect key="frame" x="295" y="9.5" width="31" height="30"/>
+                                            <state key="normal" title="写入"/>
+                                            <connections>
+                                                <action selector="ensureBtnClicked:" destination="-1" eventType="touchUpInside" id="KAa-dA-la2"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="75" id="563-pp-ago"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xz4-Ox-kS0" secondAttribute="trailing" id="G0c-b8-0W6"/>
+                                        <constraint firstItem="HSn-dS-siG" firstAttribute="top" secondItem="Jaa-Xy-u9Q" secondAttribute="top" constant="8.5" id="JhU-Ar-Mry"/>
+                                        <constraint firstAttribute="trailing" secondItem="7n7-PS-EnP" secondAttribute="trailing" constant="8" id="MTh-ll-fr7"/>
+                                        <constraint firstItem="xz4-Ox-kS0" firstAttribute="leading" secondItem="Jaa-Xy-u9Q" secondAttribute="leading" constant="8" id="SiQ-0g-ePc"/>
+                                        <constraint firstItem="7n7-PS-EnP" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="HSn-dS-siG" secondAttribute="trailing" constant="10" id="ZWS-o3-0xB"/>
+                                        <constraint firstItem="xz4-Ox-kS0" firstAttribute="top" secondItem="HSn-dS-siG" secondAttribute="bottom" constant="5" id="cOT-Il-yln"/>
+                                        <constraint firstItem="HSn-dS-siG" firstAttribute="leading" secondItem="Jaa-Xy-u9Q" secondAttribute="leading" constant="8" id="jbM-bB-MDr"/>
+                                        <constraint firstItem="7n7-PS-EnP" firstAttribute="centerY" secondItem="HSn-dS-siG" secondAttribute="centerY" id="teT-UQ-T7X"/>
+                                    </constraints>
+                                </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="YmS-6O-5He">
-                                    <rect key="frame" x="8" y="130" width="318" height="30"/>
+                                    <rect key="frame" x="8" y="165" width="318" height="30"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y11-DS-tHq">
                                             <rect key="frame" x="0.0" y="0.0" width="134" height="30"/>
@@ -105,22 +136,29 @@
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="EiD-qq-o7c" firstAttribute="leading" secondItem="WJa-mr-kHH" secondAttribute="leading" constant="8" id="24m-vE-h9g"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EiD-qq-o7c" secondAttribute="trailing" id="3dT-ih-log"/>
+                                <constraint firstItem="Jaa-Xy-u9Q" firstAttribute="leading" secondItem="WJa-mr-kHH" secondAttribute="leading" id="0a6-3I-sh8"/>
                                 <constraint firstAttribute="bottom" secondItem="YmS-6O-5He" secondAttribute="bottom" id="ANm-Xy-Ym3"/>
                                 <constraint firstItem="GqB-DO-YQM" firstAttribute="leading" secondItem="WJa-mr-kHH" secondAttribute="leading" constant="8" id="Fwe-sV-d2J"/>
-                                <constraint firstItem="EiD-qq-o7c" firstAttribute="top" secondItem="GqB-DO-YQM" secondAttribute="bottom" constant="5" id="H8Y-v9-8io"/>
                                 <constraint firstAttribute="trailing" secondItem="YmS-6O-5He" secondAttribute="trailing" constant="8" id="IU0-n1-FxR"/>
+                                <constraint firstItem="Jaa-Xy-u9Q" firstAttribute="bottom" secondItem="YmS-6O-5He" secondAttribute="top" id="J2p-xA-Lb2"/>
                                 <constraint firstItem="GqB-DO-YQM" firstAttribute="top" secondItem="WJa-mr-kHH" secondAttribute="top" id="JMO-Zd-bxn"/>
                                 <constraint firstItem="YmS-6O-5He" firstAttribute="leading" secondItem="WJa-mr-kHH" secondAttribute="leading" constant="8" id="M9z-Uw-Akd"/>
                                 <constraint firstAttribute="trailing" secondItem="GqB-DO-YQM" secondAttribute="trailing" constant="8" id="NTv-Br-CiP"/>
-                                <constraint firstAttribute="height" constant="160" id="oQq-Of-HbF"/>
+                                <constraint firstItem="Jaa-Xy-u9Q" firstAttribute="top" secondItem="GqB-DO-YQM" secondAttribute="bottom" id="ROT-Ml-5hk"/>
+                                <constraint firstAttribute="trailing" secondItem="Jaa-Xy-u9Q" secondAttribute="trailing" id="a59-Tb-fmU"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LSb-VZ-BwK" userLabel="MapView" customClass="MKMapView">
-                            <rect key="frame" x="0.0" y="248.5" width="374" height="549.5"/>
+                            <rect key="frame" x="0.0" y="283.5" width="374" height="514.5"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redPin.png" translatesAutoresizingMaskIntoConstraints="NO" id="1wi-4K-HYK">
+                            <rect key="frame" x="165" y="505" width="44" height="72"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="3VO-sM-7EG"/>
+                                <constraint firstAttribute="height" constant="72" id="9Jn-be-xAZ"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="muO-7D-S8d" userLabel="CloseBtn">
                             <rect key="frame" x="312" y="1" width="35" height="35"/>
                             <constraints>
@@ -136,7 +174,9 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
+                        <constraint firstItem="1wi-4K-HYK" firstAttribute="centerX" secondItem="Ryg-cg-iZi" secondAttribute="centerX" id="0nR-a5-JzC"/>
                         <constraint firstItem="Raf-n7-Rqx" firstAttribute="leading" secondItem="Ryg-cg-iZi" secondAttribute="leading" constant="20" symbolic="YES" id="2mX-de-g8Z"/>
+                        <constraint firstItem="1wi-4K-HYK" firstAttribute="centerY" secondItem="LSb-VZ-BwK" secondAttribute="centerY" id="3fG-yG-i5p"/>
                         <constraint firstItem="d7u-wR-aRp" firstAttribute="centerX" secondItem="Ryg-cg-iZi" secondAttribute="centerX" id="4yZ-3d-tXW"/>
                         <constraint firstAttribute="trailing" secondItem="LSb-VZ-BwK" secondAttribute="trailing" id="BMm-zw-tRj"/>
                         <constraint firstItem="d7u-wR-aRp" firstAttribute="bottom" secondItem="Raf-n7-Rqx" secondAttribute="top" constant="-10" id="CeV-OS-uzn"/>
@@ -166,6 +206,7 @@
         </view>
     </objects>
     <resources>
+        <image name="redPin.png" width="44" height="72"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
