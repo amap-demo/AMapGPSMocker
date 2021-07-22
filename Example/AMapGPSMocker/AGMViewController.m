@@ -54,6 +54,7 @@
 - (void)mapView:(MAMapView *)mapView didUpdateUserLocation:(MAUserLocation *)userLocation updatingLocation:(BOOL)updatingLocation {
     if (updatingLocation) {
         NSLog(@"MAMapView update user location:%@",[AGMCoordConvertUtil stringFromCoord:userLocation.coordinate]);
+        [mapView setCenterCoordinate:userLocation.coordinate animated:YES];
     }
 }
 
