@@ -1,6 +1,6 @@
 # AMapGPSMocker
 
-[![CI Status](https://img.shields.io/travis/roylly/AMapGPSMocker.svg?style=flat)](https://travis-ci.org/roylly/MAGPSEmulator)
+[![CI Status](https://img.shields.io/travis/roylly/AMapGPSMocker.svg?style=flat)](https://travis-ci.org/roylly/AMapGPSMocker)
 [![Version](https://img.shields.io/cocoapods/v/AMapGPSMocker.svg?style=flat)](https://cocoapods.org/pods/AMapGPSMocker)
 [![License](https://img.shields.io/cocoapods/l/AMapGPSMocker.svg?style=flat)](https://cocoapods.org/pods/AMapGPSMocker)
 [![Platform](https://img.shields.io/cocoapods/p/AMapGPSMocker.svg?style=flat)](https://cocoapods.org/pods/AMapGPSMocker)
