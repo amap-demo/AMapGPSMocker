@@ -358,6 +358,7 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AMapGPSMocker_Example/Pods-AMapGPSMocker_Example-resources.sh",
+				"${PODS_ROOT}/AMap3DMap/MAMapKit.framework/AMap.bundle",
 				"${PODS_ROOT}/../../AMapGPSMocker/Classes/Private/UI/ViewController/AGMDriveCarEmulatorViewController.xib",
 				"${PODS_ROOT}/../../AMapGPSMocker/Classes/Private/UI/ViewController/AGMMockFileListViewController.xib",
 				"${PODS_ROOT}/../../AMapGPSMocker/Classes/Private/UI/ViewController/AGMPositionEditViewController.xib",
@@ -365,11 +366,10 @@
 				"${PODS_ROOT}/../../AMapGPSMocker/Assets/center_btn.png",
 				"${PODS_ROOT}/../../AMapGPSMocker/Assets/redPin@2x.png",
 				"${PODS_ROOT}/../../AMapGPSMocker/Assets/wheel@2x.png",
-				"${PODS_ROOT}/AMapNavi/AMapNaviKit.framework/AMapNavi.bundle",
-				"${PODS_ROOT}/AMapNavi/AMapNaviKit.framework/AMap.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AGMDriveCarEmulatorViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AGMMockFileListViewController.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AGMPositionEditViewController.nib",
@@ -377,8 +377,6 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/center_btn.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/redPin@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/wheel@2x.png",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMapNavi.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AMap.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AMapGPSMocker'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'GPS的模拟工具，提供单点模拟、多点（路线）回放、坐标系转换等功能'
 
 # This description is used to generate tags and improve search results.
