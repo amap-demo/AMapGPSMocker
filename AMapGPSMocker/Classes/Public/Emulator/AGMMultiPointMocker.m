@@ -51,7 +51,7 @@
 
 - (void)initProperties {
     _isMocking = NO;
-    _timeInverval = 0.2f;
+    _timeInverval = 1.0f;
 
     self.lock = [[NSRecursiveLock alloc] init];
     self.speed = 60.0;
