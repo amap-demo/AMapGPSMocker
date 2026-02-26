@@ -6,6 +6,8 @@ target 'AMapGPSMocker_Example' do
   pod 'AMapGPSMocker', :path => '../'
   pod 'AMap3DMap', '~> 7.9.0'
 
+
+
   target 'AMapGPSMocker_Tests' do
     inherit! :search_paths
 
